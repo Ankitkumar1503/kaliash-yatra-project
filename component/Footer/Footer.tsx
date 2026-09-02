@@ -16,16 +16,11 @@ interface FooterLink {
 
 const companyLinks: FooterLink[] = [
   { label: "About Us", href: "/about" },
-  { label: "Careers", href: "/careers" },
   { label: "Blog", href: "/blog" },
-  { label: "Press", href: "/press" },
-  { label: "Gift Cards", href: "/gift-cards" },
-  { label: "Magazine", href: "/magazine" },
 ];
 
 const supportLinks: FooterLink[] = [
   { label: "Contact", href: "/contact" },
-  { label: "Legal Notice", href: "/legal" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms and Conditions", href: "/terms" },
   { label: "Sitemap", href: "/sitemap" },
@@ -34,9 +29,6 @@ const supportLinks: FooterLink[] = [
 const otherServicesLinks: FooterLink[] = [
   { label: "Activity Finder", href: "/activity-finder" },
   { label: "Tour List", href: "/tours" },
-  { label: "Flight finder", href: "/flight-finder" },
-  { label: "Cruise Ticket", href: "/cruise" },
-  { label: "Holiday Rental", href: "/rentals" },
   { label: "Travel Agents", href: "/agents" },
 ];
 
