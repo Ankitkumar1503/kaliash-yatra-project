@@ -6,6 +6,9 @@ import ConceptSection from "@/component/ConceptSection/ConceptSection";
 import AdventuresSection from "@/component/AdventuresSection/AdventuresSection";
 import TravelTips from "@/component/TravelTips/TravelTips";
 import TravelGallery from "@/component/TravelGallery/TravelGallery";
+import UpcomingTrips from "@/component/UpcomingTrips/UpcomingTrips";
+import Testimonials from "@/component/Testimonials/Testimonials";
+import FAQSection from "@/component/FAQSection/FAQSection";
 import Footer from "@/component/Footer/Footer";
 
 export default function Home() {
@@ -20,6 +23,9 @@ export default function Home() {
         <AdventuresSection />
         <TravelTips />
         <TravelGallery />
+        <UpcomingTrips />
+        <Testimonials />
+        <FAQSection />
       </main>
       <Footer />
     </div>
