@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Header from "@/component/Header/Header";
-import Banner from "@/component/Banner/Banner";
-import BestTour from "@/component/BestTour/BestTour";
-import DestinationOverview from "@/component/Destination/DestinationOverview";
-import FeaturedDestinationTours from "@/component/Destination/FeaturedDestinationTours";
-import DestinationPhotoGallery from "@/component/Destination/DestinationPhotoGallery";
-import DestinationSellingPoints from "@/component/Destination/DestinationSellingPoints";
-import DestinationCTA from "@/component/Destination/DestinationCTA";
+import PageBanner from "@/component/PageBanner/PageBanner";
+import DestinationCategoryCards from "@/component/Destination/DestinationCategoryCards";
+import FeaturedDestination from "@/component/Destination/FeaturedDestination";
+import OurDestinations from "@/component/Destination/OurDestinations";
+import TravelExperiences from "@/component/Destination/TravelExperiences";
+import TravelTips from "@/component/TravelTips/TravelTips";
+import TravelGallery from "@/component/TravelGallery/TravelGallery";
+import NewsletterSubscription from "@/component/NewsletterSubscription/NewsletterSubscription";
 import Footer from "@/component/Footer/Footer";
 
 export const metadata: Metadata = {
-  title: "Zermatt & Matterhorn Destination - Mission Nepal Holiday",
+  title: "Explore Our Destinations - Mission Nepal Holiday",
   description:
-    "Explore Zermatt, the iconic Matterhorn, alpine glacier tours, luxury chalets, and mountaineering holidays in Switzerland.",
+    "Discover Nepal, Bhutan, Tibet, India and beyond through breathtaking landscapes, rich cultures and unforgettable journeys.",
 };
 
 export default function DestinationPage() {
@@ -20,26 +21,40 @@ export default function DestinationPage() {
     <div className="min-h-screen flex flex-col justify-between bg-white">
       <Header />
       <main className="flex-grow w-full">
-        {/* Hero Banner */}
-        <Banner />
+        {/* 1. Existing Reusable Inner Page Hero Banner */}
+        <PageBanner
+          backgroundImage="/images/destinations/everest.jpg"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Destination" },
+          ]}
+          title="EXPLORE OUR DESTINATIONS"
+          description="Discover Nepal, Bhutan, Tibet, India and beyond through breathtaking landscapes, rich cultures and unforgettable journeys."
+        />
 
-        {/* Top Best Seller Tours Carousel */}
-        <BestTour />
+        {/* 2. Destination Category Mini Cards (Nepal, Bhutan, Tibet, India) */}
+        <DestinationCategoryCards />
 
-        {/* Why Choose Zermatt & The Matterhorn */}
-        <DestinationOverview />
+        {/* 3. Featured Destination — Nepal */}
+        <FeaturedDestination />
 
-        {/* Featured Zermatt Tours */}
-        <FeaturedDestinationTours />
+        {/* 4. Our Destinations (5 Cards with Arrow Navigation) */}
+        <OurDestinations />
 
-        {/* Destination Photo Gallery */}
-        <DestinationPhotoGallery />
+        {/* 5. Choose Your Travel Experience (5 Activity Icons) */}
+        <TravelExperiences />
 
-        {/* Selling Points & Popular Hotels */}
-        <DestinationSellingPoints />
+        {/* 6. Travel Tips / Blog */}
+        <TravelTips
+          eyebrow="Modern & Beautiful"
+          title="STAY UPDATE WITH GOTRAVEL TIPS"
+        />
 
-        {/* Ready for Adventure CTA & Newsletter */}
-        <DestinationCTA />
+        {/* 7. Travel Gallery */}
+        <TravelGallery />
+
+        {/* 8. Newsletter Subscription */}
+        <NewsletterSubscription />
       </main>
       <Footer />
     </div>

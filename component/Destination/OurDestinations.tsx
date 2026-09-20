@@ -1,0 +1,205 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
+export interface DestinationCardItem {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  href: string;
+}
+
+const destinationsList: DestinationCardItem[] = [
+  {
+    id: "nepal",
+    name: "Nepal",
+    description: "Explore the Himalayas",
+    image: "/images/gallery/gallery-3.jpg",
+    href: "/destination?country=nepal",
+  },
+  {
+    id: "bhutan",
+    name: "Bhutan",
+    description: "Discover the Land of Happiness",
+    image: "/images/gallery/gallery-4.jpg",
+    href: "/destination?country=bhutan",
+  },
+  {
+    id: "tibet",
+    name: "Tibet",
+    description: "Journey to the Roof of the World",
+    image: "/images/concept/concept-bottom-right.jpg",
+    href: "/destination?country=tibet",
+  },
+  {
+    id: "india",
+    name: "India",
+    description: "Experience timeless traditions",
+    image: "/images/tours/tour-4.jpg",
+    href: "/destination?country=india",
+  },
+  {
+    id: "international",
+    name: "International",
+    description: "Explore beyond the Himalayas",
+    image: "/images/tours/tour-5.jpg",
+    href: "/destination",
+  },
+];
+
+export interface OurDestinationsProps {
+  eyebrow?: string;
+  title?: string;
+  items?: DestinationCardItem[];
+  rightLinkVariant?: "arrows" | "button";
+  rightLinkText?: string;
+  rightLinkHref?: string;
+  className?: string;
+}
+
+export default function OurDestinations({
+  eyebrow = "MODERN & BEAUTIFUL",
+  title = "Popular Destinations",
+  items,
+  rightLinkVariant = "arrows",
+  rightLinkText = "View all Tour",
+  rightLinkHref = "/tours",
+  className = "",
+}: OurDestinationsProps = {}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const displayList = items && items.length > 0 ? items : destinationsList;
+
+  const handleScrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section className={`w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8 ${className}`}>
+      <div className="max-w-[1360px] mx-auto">
+        {/* Section Header: Left Title block + Right Controls */}
+        <div className="flex justify-between items-end mb-5 sm:mb-7">
+          {/* Left Side */}
+          <div>
+            <span className="text-[#F26522] text-xs sm:text-[13px] font-medium tracking-wider uppercase block mb-1">
+              {eyebrow}
+            </span>
+            <h2
+              className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black leading-tight`}
+            >
+              {title}
+            </h2>
+          </div>
+
+          {/* Right Side: Arrows or Button */}
+          {rightLinkVariant === "button" ? (
+            <Link
+              href={rightLinkHref}
+              className="border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-black text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 rounded-md transition-colors flex items-center space-x-1.5 shadow-2xs group cursor-pointer"
+            >
+              <span>{rightLinkText}</span>
+              <span className="transform group-hover:translate-x-0.5 transition-transform text-xs">
+                →
+              </span>
+            </Link>
+          ) : (
+            <div className="flex items-center space-x-3 sm:space-x-4 pb-1">
+              <button
+                onClick={handleScrollLeft}
+                aria-label="Previous destinations"
+                className="text-black hover:opacity-75 transition-opacity p-1 cursor-pointer focus:outline-none"
+              >
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.75"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={handleScrollRight}
+                aria-label="Next destinations"
+                className="text-[#F26522] hover:opacity-75 transition-opacity p-1 cursor-pointer focus:outline-none"
+              >
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.75"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* 5 Destination Cards Carousel Track */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-5 xl:gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-1"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {displayList.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href || "/destination"}
+                className="flex-shrink-0 w-[260px] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc((100%-4*1.5rem)/5)] snap-start group cursor-pointer"
+              >
+                {/* 2:1 Aspect Ratio Landscape Image */}
+                <div className="relative w-full aspect-[2/1] overflow-hidden mb-2.5 sm:mb-3 bg-gray-100 rounded-none">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="(max-width: 640px) 260px, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Centered Destination Name and Description */}
+                <div className="text-center px-1">
+                  <h3 className="font-semibold text-black text-sm sm:text-base leading-snug group-hover:text-[#F26522] transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-700 text-[11px] sm:text-xs md:text-[13px] font-normal leading-relaxed mt-0.5">
+                    {item.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

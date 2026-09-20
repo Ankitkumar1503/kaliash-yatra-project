@@ -194,60 +194,63 @@ export default function Banner() {
 
   return (
     <section className="relative w-full bg-[#f2f5f6] overflow-hidden">
-      {/* 50% / 50% Two-Column Split Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
-        {/* LEFT CONTENT AREA */}
-        <div className="flex flex-col justify-start items-start pl-6 sm:pl-8 lg:pl-10 xl:pl-16 2xl:pl-20 pr-6 lg:pr-8 pt-8 sm:pt-12 lg:pt-[85px] pb-10 lg:pb-[100px] z-10">
-          {/* Badge */}
-          <div className="inline-flex items-center bg-[#fdeee9] text-gray-800 text-xs sm:text-[13px] font-medium rounded-full p-1 pr-3 mb-[22px] sm:mb-[26px] shadow-2xs">
-            <span className="bg-[#F26522] text-white font-semibold px-2.5 py-0.5 rounded-full text-[11px] mr-2">
-              Trusted
-            </span>
-            <span className="font-medium text-gray-800 text-xs sm:text-[13px]">
-              {slide.badgeText}
-            </span>
+      {/* Container aligned with Header */}
+      <div className="site-container">
+        {/* 50% / 50% Two-Column Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
+          {/* LEFT CONTENT AREA */}
+          <div className="flex flex-col justify-start items-start pr-0 lg:pr-8 pt-8 sm:pt-12 lg:pt-[85px] pb-10 lg:pb-[100px] z-10">
+            {/* Badge */}
+            <div className="inline-flex items-center bg-[#fdeee9] text-gray-800 text-xs sm:text-[13px] font-medium rounded-full p-1 pr-3 mb-[22px] sm:mb-[26px] shadow-2xs">
+              <span className="bg-[#F26522] text-white font-semibold px-2.5 py-0.5 rounded-full text-[11px] mr-2">
+                Trusted
+              </span>
+              <span className="font-medium text-gray-800 text-xs sm:text-[13px]">
+                {slide.badgeText}
+              </span>
+            </div>
+
+            {/* Headline: target 60-68px on desktop, exactly 2 lines */}
+            <h1
+              className={`${anton.className} text-3xl sm:text-5xl md:text-6xl lg:text-[58px] xl:text-[64px] 2xl:text-[68px] text-black leading-[0.96] uppercase tracking-tight mb-[20px] sm:mb-[24px]`}
+            >
+              <span className="block whitespace-nowrap">
+                {slide.headlineLine1}
+              </span>
+              <span className="block whitespace-nowrap">
+                {slide.headlineLine2}
+              </span>
+            </h1>
+
+            {/* Description: refined font size ~15px, comfortable readability */}
+            <p className="text-gray-700 text-xs sm:text-sm lg:text-[15px] xl:text-[15.5px] font-normal leading-relaxed max-w-[620px] mb-[24px] sm:mb-[28px]">
+              {slide.description}
+            </p>
+
+            {/* Explore Tours Button: refined height & font size */}
+            <Link
+              href={slide.ctaLink}
+              className="w-full sm:w-[220px] lg:w-[240px] h-[48px] sm:h-[52px] lg:h-[56px] bg-[#F26522] hover:bg-[#d8480b] text-white font-semibold text-sm sm:text-[15px] inline-flex items-center justify-center transition-all duration-200 rounded-none shadow-xs hover:shadow-md cursor-pointer"
+            >
+              {slide.ctaText}
+            </Link>
           </div>
 
-          {/* Headline: target 60-68px on desktop, exactly 2 lines */}
-          <h1
-            className={`${anton.className} text-3xl sm:text-5xl md:text-6xl lg:text-[58px] xl:text-[64px] 2xl:text-[68px] text-black leading-[0.96] uppercase tracking-tight mb-[20px] sm:mb-[24px]`}
-          >
-            <span className="block whitespace-nowrap">
-              {slide.headlineLine1}
-            </span>
-            <span className="block whitespace-nowrap">
-              {slide.headlineLine2}
-            </span>
-          </h1>
-
-          {/* Description: refined font size ~15px, comfortable readability */}
-          <p className="text-gray-700 text-xs sm:text-sm lg:text-[15px] xl:text-[15.5px] font-normal leading-relaxed max-w-[620px] mb-[24px] sm:mb-[28px]">
-            {slide.description}
-          </p>
-
-          {/* Explore Tours Button: refined height & font size */}
-          <Link
-            href={slide.ctaLink}
-            className="w-full sm:w-[220px] lg:w-[240px] h-[48px] sm:h-[52px] lg:h-[56px] bg-[#F26522] hover:bg-[#d8480b] text-white font-semibold text-sm sm:text-[15px] inline-flex items-center justify-center transition-all duration-200 rounded-none shadow-xs hover:shadow-md cursor-pointer"
-          >
-            {slide.ctaText}
-          </Link>
-        </div>
-
-        {/* RIGHT IMAGE AREA */}
-        <div className="relative w-full pb-0 h-[380px] sm:h-[460px] md:h-[520px] lg:h-auto min-h-[380px] lg:min-h-[640px] flex flex-col justify-end">
-          {/* Curved Mountain Image Container */}
-          <div className="relative w-full h-full min-h-[340px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[600px] overflow-hidden rounded-tl-[110px] sm:rounded-tl-[130px] lg:rounded-tl-[150px]">
-            <Image
-              src={slide.image}
-              alt={slide.alt}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center w-full h-full transition-opacity duration-300"
-            />
-            {/* Subtle bottom-right gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
+          {/* RIGHT IMAGE AREA */}
+          <div className="relative w-full pb-0 h-[380px] sm:h-[460px] md:h-[520px] lg:h-auto min-h-[380px] lg:min-h-[640px] flex flex-col justify-end">
+            {/* Curved Mountain Image Container */}
+            <div className="relative w-full h-full min-h-[340px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[600px] overflow-hidden rounded-tl-[110px] sm:rounded-tl-[130px] lg:rounded-tl-[150px]">
+              <Image
+                src={slide.image}
+                alt={slide.alt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center w-full h-full transition-opacity duration-300"
+              />
+              {/* Subtle bottom-right gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
         </div>
       </div>

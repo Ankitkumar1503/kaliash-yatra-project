@@ -29,7 +29,7 @@ export default function DestinationCTA() {
     <section className="w-full">
       {/* 1. Light Gray Adventure CTA Banner */}
       <div className="w-full bg-[#EDF0F5] py-10 md:py-14 px-4 md:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div className="max-w-[1360px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           {/* Left Title */}
           <div>
             <h2

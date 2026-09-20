@@ -66,8 +66,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-white py-12 sm:py-14 md:py-16 px-4 sm:px-5 lg:px-6 xl:px-8">
-      <div className="max-w-[1360px] mx-auto">
+    <section className="w-full bg-white py-12 sm:py-14 md:py-16">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Heading and description */}
           <div className="lg:col-span-4 xl:col-span-4 lg:sticky lg:top-24">

@@ -36,14 +36,14 @@ export default function NewsletterSubscription() {
       aria-label="Newsletter Subscription"
       className="w-full bg-[#FA4D09] py-8 sm:py-10 md:py-12"
     >
-      <div className="max-w-[1360px] mx-auto">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 xl:gap-12">
+      <div className="site-container">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 xl:gap-12">
           {/* Left Side: Icon + Text Group */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-7 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-7 text-center sm:text-left">
             {/* White Outlined Travel/Mail Illustration Icon */}
             <div className="shrink-0 flex items-center justify-center">
               <svg
-                className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 text-white"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 text-white"
                 viewBox="0 0 80 70"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +202,7 @@ export default function NewsletterSubscription() {
             {/* Heading & Subtitle */}
             <div className="flex flex-col">
               <h2
-                className={`${anton.className} text-lg sm:text-xl md:text-[21px] lg:text-[22px] uppercase tracking-wide text-white leading-tight`}
+                className={`${anton.className} text-base sm:text-lg md:text-[21px] lg:text-[22px] uppercase tracking-wide text-white leading-tight`}
               >
                 YOUR TRAVEL JOURNEY STARTS HERE
               </h2>
@@ -216,7 +216,7 @@ export default function NewsletterSubscription() {
           <div className="w-full lg:w-auto relative">
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 xl:gap-5 w-full"
+              className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 xl:gap-5 w-full"
             >
               <label htmlFor="newsletter-email" className="sr-only">
                 Enter your email
@@ -231,11 +231,11 @@ export default function NewsletterSubscription() {
                   if (status !== "idle") setStatus("idle");
                 }}
                 placeholder="Enter your email..."
-                className="w-full sm:w-[340px] md:w-[420px] lg:w-[440px] xl:w-[500px] h-[46px] sm:h-[48px] md:h-[50px] bg-white text-gray-900 placeholder:text-gray-400 px-4 sm:px-5 rounded-none text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-white/50 border-0"
+                className="w-full sm:w-[340px] md:w-[420px] lg:w-[440px] xl:w-[500px] h-[44px] sm:h-[48px] md:h-[50px] bg-white text-gray-900 placeholder:text-gray-400 px-4 sm:px-5 rounded-none text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-white/50 border-0 box-border"
               />
               <button
                 type="submit"
-                className="w-full sm:w-[150px] lg:w-[160px] h-[46px] sm:h-[48px] md:h-[50px] bg-white text-[#FA4D09] hover:bg-gray-50 active:bg-gray-100 font-semibold uppercase text-xs sm:text-sm tracking-wider rounded-none shrink-0 transition-colors cursor-pointer border-0"
+                className="w-full sm:w-[150px] lg:w-[160px] h-[44px] sm:h-[48px] md:h-[50px] bg-white text-[#FA4D09] hover:bg-gray-50 active:bg-gray-100 font-semibold uppercase text-xs sm:text-sm tracking-wider rounded-none shrink-0 transition-colors cursor-pointer border-0"
               >
                 SUBSCRIBE
               </button>

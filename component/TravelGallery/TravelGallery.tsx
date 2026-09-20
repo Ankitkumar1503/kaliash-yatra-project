@@ -52,15 +52,17 @@ export default function TravelGallery() {
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-14">
       {/* Centered Header */}
-      <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-9 px-4 md:px-6">
-        <span className="text-[#38BDF8] text-xs sm:text-[13px] font-medium tracking-widest uppercase block mb-1 text-center">
-          MODERN &amp; BEAUTIFUL
-        </span>
-        <h2
-          className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black text-center mt-1 leading-tight`}
-        >
-          The Travel Gallery
-        </h2>
+      <div className="site-container mb-7 sm:mb-9">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-[#38BDF8] text-xs sm:text-[13px] font-medium tracking-widest uppercase block mb-1 text-center">
+            MODERN &amp; BEAUTIFUL
+          </span>
+          <h2
+            className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black text-center mt-1 leading-tight`}
+          >
+            The Travel Gallery
+          </h2>
+        </div>
       </div>
 
       {/* Contained 5-Image Gallery Grid */}

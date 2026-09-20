@@ -110,8 +110,8 @@ export default function BestTour() {
   };
 
   return (
-    <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
-      <div className="max-w-[1360px] mx-auto">
+    <section className="w-full bg-white py-10 sm:py-12 md:py-14">
+      <div className="site-container">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 sm:mb-8 mx-auto gap-4 sm:gap-0">
           {/* Left side */}
@@ -152,7 +152,7 @@ export default function BestTour() {
           {/* Horizontal Scrollable Cards Track */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-5 xl:gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2 px-1"
+            className="flex gap-5 xl:gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {tourData.map((tour) => (

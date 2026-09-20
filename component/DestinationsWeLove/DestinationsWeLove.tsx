@@ -208,8 +208,8 @@ export default function DestinationsWeLove() {
   const currentDestinations = destinationsData[activeTab];
 
   return (
-    <section className="w-full bg-[#F8F8F8] py-12 sm:py-14 md:py-16 px-4 sm:px-5 lg:px-6 xl:px-8">
-      <div className="max-w-[1360px] mx-auto">
+    <section className="w-full bg-[#F8F8F8] py-12 sm:py-14 md:py-16">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
           {/* Left Content Area (approx 32-35%) */}
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between">

@@ -35,19 +35,19 @@ export default function Header() {
     <header className="w-full bg-white top-0 z-50 transition-all duration-200">
       {/* 1. TOP CONTACT / SOCIAL BAR */}
       <div className="w-full bg-white text-gray-500 text-xs border-b border-gray-200">
-        <div className="max-w-[1360px] mx-auto py-2 flex justify-between items-center">
+        <div className="site-container py-1.5 sm:py-2 flex justify-between items-center text-xs">
           {/* Left: Phone & Email */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3 sm:space-x-6">
             <a
               href="tel:+1234567890"
-              className="flex items-center space-x-2 text-gray-600 hover:text-[#F26522] transition-colors"
+              className="flex items-center space-x-1.5 sm:space-x-2 text-gray-600 hover:text-[#F26522] transition-colors text-[11px] sm:text-xs"
             >
-              <FaPhoneAlt className="text-gray-500 text-xs sm:text-sm" />
-              <span>+123 456 7890</span>
+              <FaPhoneAlt className="text-gray-500 text-[10px] sm:text-xs" />
+              <span className="whitespace-nowrap">+123 456 7890</span>
             </a>
             <a
               href="mailto:marketing@bztravel.com.vn"
-              className="hidden sm:flex items-center space-x-2 text-gray-600 hover:text-[#F26522] transition-colors"
+              className="hidden md:flex items-center space-x-2 text-gray-600 hover:text-[#F26522] transition-colors text-xs"
             >
               <FaEnvelope className="text-gray-500 text-xs sm:text-sm" />
               <span>marketing@bztravel.com.vn</span>
@@ -55,34 +55,36 @@ export default function Header() {
           </div>
 
           {/* Right: Social Share & Icons */}
-          <div className="flex items-center space-x-3">
-            <span className="text-gray-500 font-normal text-xs sm:text-sm">Social Share</span>
-            <div className="flex items-center space-x-2.5">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <span className="text-gray-500 font-normal text-xs sm:text-sm hidden sm:inline">
+              Social Share
+            </span>
+            <div className="flex items-center space-x-2 sm:space-x-2.5">
               <a
                 href="#"
                 aria-label="Facebook"
-                className="text-gray-600 hover:text-[#F26522] transition-colors"
+                className="text-gray-600 hover:text-[#F26522] transition-colors p-0.5"
               >
                 <FaFacebookF className="w-3.5 h-3.5" />
               </a>
               <a
                 href="#"
                 aria-label="Twitter"
-                className="text-gray-600 hover:text-[#F26522] transition-colors"
+                className="text-gray-600 hover:text-[#F26522] transition-colors p-0.5"
               >
                 <FaTwitter className="w-3.5 h-3.5" />
               </a>
               <a
                 href="#"
                 aria-label="Instagram"
-                className="text-gray-600 hover:text-[#F26522] transition-colors"
+                className="text-gray-600 hover:text-[#F26522] transition-colors p-0.5"
               >
                 <FaInstagram className="w-3.5 h-3.5" />
               </a>
               <a
                 href="#"
                 aria-label="YouTube"
-                className="text-gray-600 hover:text-[#F26522] transition-colors"
+                className="text-gray-600 hover:text-[#F26522] transition-colors p-0.5"
               >
                 <FaYoutube className="w-3.5 h-3.5" />
               </a>
@@ -93,7 +95,7 @@ export default function Header() {
 
       {/* 2. MAIN NAVIGATION HEADER */}
       <div className="w-full bg-white border-b border-gray-100">
-        <div className="max-w-[1360px] mx-auto flex items-center justify-between relative h-16 sm:h-18 lg:h-20">
+        <div className="site-container flex items-center justify-between relative h-14 sm:h-16 md:h-18 lg:h-20">
           {/* Left: Logo (Starts close to left edge with container padding) */}
           <div className="flex items-center shrink-0">
             <Link href="/" className="flex items-center group">
@@ -103,7 +105,7 @@ export default function Header() {
                 width={190}
                 height={46}
                 priority
-                className="h-10 sm:h-11 md:h-12 lg:h-13 w-auto object-contain transition-transform duration-200 group-hover:opacity-95"
+                className="h-8 sm:h-9 md:h-11 lg:h-13 max-h-[34px] sm:max-h-[40px] lg:max-h-none w-auto object-contain transition-transform duration-200 group-hover:opacity-95"
               />
             </Link>
           </div>
@@ -132,17 +134,17 @@ export default function Header() {
           </div>
 
           {/* Mobile Right: CTA Button + Hamburger Menu Toggle */}
-          <div className="flex lg:hidden items-center space-x-3">
+          <div className="flex lg:hidden items-center space-x-2 sm:space-x-3 shrink-0">
             <Link
               href="/destination"
-              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs px-3 py-1.5 shadow-xs transition-colors whitespace-nowrap inline-flex items-center justify-center"
+              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-[11px] sm:text-xs px-2.5 sm:px-3 py-1.5 shadow-xs transition-colors whitespace-nowrap inline-flex items-center justify-center"
             >
               Plan Your Trip
             </Link>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-black hover:text-[#F26522] focus:outline-none p-1.5 transition-colors cursor-pointer"
+              className="text-black hover:text-[#F26522] focus:outline-none p-1 sm:p-1.5 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isMenuOpen ? (

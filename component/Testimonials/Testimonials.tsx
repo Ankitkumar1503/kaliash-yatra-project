@@ -53,26 +53,41 @@ const testimonialsData: Testimonial[] = [
   },
 ];
 
-export default function Testimonials() {
+export interface TestimonialsProps {
+  eyebrow?: string;
+  title?: string;
+  testimonials?: Testimonial[];
+  className?: string;
+}
+
+export default function Testimonials({
+  eyebrow = "TESTIMONIALS",
+  title = "WHAT OUR ADVENTURERS SAY",
+  testimonials,
+  className = "",
+}: TestimonialsProps = {}) {
+  const displayTestimonials =
+    testimonials && testimonials.length > 0 ? testimonials : testimonialsData;
+
   return (
-    <section className="w-full py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
+    <section className={`w-full py-10 sm:py-12 md:py-14 ${className}`}>
       {/* Container matching the exact container width of the website */}
-      <div className="max-w-[1360px] mx-auto">
+      <div className="site-container">
         {/* Section Header */}
-        <div className="text-center max-w-[1360px] mx-auto mb-6 sm:mb-7">
+        <div className="text-center mb-6 sm:mb-7">
           <span className="text-[#F26522] text-xs sm:text-[13px] font-medium tracking-wider uppercase block mb-1">
-            TESTIMONIALS
+            {eyebrow}
           </span>
           <h2
             className={`${anton.className} text-2xl sm:text-3xl lg:text-[34px] uppercase tracking-tight text-black leading-none`}
           >
-            WHAT OUR ADVENTURERS SAY
+            {title}
           </h2>
         </div>
 
         {/* Testimonials Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6 xl:gap-7 pt-1">
-          {testimonialsData.map((item) => {
+          {displayTestimonials.map((item) => {
             const displayName = item.name.replace(/^[-–—\s]+/, "");
             const rawQuote = item.quote
               .replace(/^["“”\s]+/, "")
