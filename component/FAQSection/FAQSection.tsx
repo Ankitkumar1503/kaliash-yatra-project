@@ -66,29 +66,29 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-white py-14 md:py-20 px-4 md:px-6 lg:px-8">
-      <div className="max-w-[1470px] mx-auto">
+    <section className="w-full bg-white py-12 sm:py-14 md:py-16 px-4 sm:px-5 lg:px-6 xl:px-8">
+      <div className="max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Heading and description */}
           <div className="lg:col-span-4 xl:col-span-4 lg:sticky lg:top-24">
             <span
-              className={`${lora.className} text-gray-500 text-xs sm:text-sm tracking-[0.18em] uppercase block mb-3 font-normal`}
+              className={`${lora.className} text-gray-500 text-xs sm:text-[13px] tracking-[0.18em] uppercase block mb-2 font-normal`}
             >
               TRAVEL INFORMATION
             </span>
             <h2
-              className={`${anton.className} text-3xl sm:text-4xl md:text-5xl lg:text-[46px] uppercase tracking-tight text-black leading-[1.08] mb-4`}
+              className={`${anton.className} text-2xl sm:text-3xl md:text-4xl lg:text-[36px] uppercase tracking-tight text-black leading-[1.08] mb-3`}
             >
               FREQUENTLY ASKED
               <br className="hidden sm:inline" /> QUESTIONS
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm">
+            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-sm">
               Find answers to the most common questions about travelling with us.
             </p>
           </div>
 
           {/* Right Column: FAQ Accordion with clean gray cards */}
-          <div className="lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-3.5">
+          <div className="lg:col-span-8 xl:col-span-8 space-y-2.5 sm:space-y-3">
             {faqsData.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
@@ -100,15 +100,15 @@ export default function FAQSection() {
                     type="button"
                     onClick={() => toggleAccordion(index)}
                     aria-expanded={isOpen}
-                    className="w-full py-4 sm:py-5 px-5 sm:px-7 flex items-center justify-between text-left group cursor-pointer focus:outline-none"
+                    className="w-full py-3.5 sm:py-4 px-4 sm:px-6 flex items-center justify-between text-left group cursor-pointer focus:outline-none"
                   >
-                    <span className="text-sm sm:text-[15.5px] font-semibold text-gray-900 group-hover:text-[#F26522] transition-colors pr-4">
+                    <span className="text-xs sm:text-[14px] md:text-[14.5px] font-medium text-gray-900 group-hover:text-[#F26522] transition-colors pr-4">
                       {faq.question}
                     </span>
                     <span className="shrink-0 text-gray-700 group-hover:text-[#F26522] transition-colors flex items-center justify-center w-5 h-5">
                       {isOpen ? (
                         <svg
-                          className="w-4 h-4"
+                          className="w-3.5 h-3.5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -122,7 +122,7 @@ export default function FAQSection() {
                         </svg>
                       ) : (
                         <svg
-                          className="w-4 h-4"
+                          className="w-3.5 h-3.5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -139,7 +139,7 @@ export default function FAQSection() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-7 pb-5 pt-1 text-gray-600 text-xs sm:text-sm leading-relaxed font-normal border-t border-gray-100">
+                    <div className="px-4 sm:px-6 pb-4 pt-1 text-gray-600 text-xs sm:text-[13px] leading-relaxed font-normal border-t border-gray-100">
                       <p>{faq.answer}</p>
                     </div>
                   )}

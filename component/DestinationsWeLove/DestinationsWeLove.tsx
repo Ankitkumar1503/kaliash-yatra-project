@@ -208,28 +208,28 @@ export default function DestinationsWeLove() {
   const currentDestinations = destinationsData[activeTab];
 
   return (
-    <section className="w-full bg-[#F8F8F8] py-14 sm:py-16 md:py-20 px-4 md:px-8 lg:px-12">
-      <div className="max-w-[1470px] mx-auto">
+    <section className="w-full bg-[#F8F8F8] py-12 sm:py-14 md:py-16 px-4 sm:px-5 lg:px-6 xl:px-8">
+      <div className="max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
           {/* Left Content Area (approx 32-35%) */}
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between">
             <div>
               {/* Deals & Offers label */}
               <span
-                className={`${lora.className} text-gray-500 text-[16px] sm:text-[17.5px] font-normal block mb-2`}
+                className={`${lora.className} text-gray-500 text-sm sm:text-[15px] font-normal block mb-1.5`}
               >
                 Deals &amp; Offers
               </span>
 
               {/* Main Heading */}
               <h2
-                className={`${anton.className} text-3xl sm:text-4xl lg:text-[44px] xl:text-[46px] uppercase tracking-tight text-black leading-[1.08] mb-4`}
+                className={`${anton.className} text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] uppercase tracking-tight text-black leading-[1.08] mb-3 sm:mb-4`}
               >
                 DESTINATIONS WE LOVE
               </h2>
 
               {/* Description */}
-              <p className="text-[#222222] text-[15px] sm:text-[16px] leading-[1.6] max-w-[360px] font-normal mb-8 sm:mb-10">
+              <p className="text-[#222222] text-xs sm:text-sm md:text-[14px] leading-relaxed max-w-[360px] font-normal mb-6 sm:mb-8">
                 Nature, culture and unforgettable experiences. Discover our
                 handpicked destinations across the Himalayas and beyond.
               </p>
@@ -244,7 +244,7 @@ export default function DestinationsWeLove() {
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     type="button"
-                    className={`h-[42px] sm:h-[44px] px-5 sm:px-6 rounded-[2px] text-sm sm:text-[14.5px] font-medium transition-all duration-200 cursor-pointer focus:outline-none ${
+                    className={`h-[36px] sm:h-[38px] px-4 sm:px-5 rounded-[2px] text-xs sm:text-[13.5px] font-medium transition-all duration-200 cursor-pointer focus:outline-none ${
                       isActive
                         ? "bg-[#F26522] text-white shadow-xs"
                         : "bg-[#EAEAEA] text-gray-800 hover:bg-[#DFDFDF]"
@@ -264,21 +264,21 @@ export default function DestinationsWeLove() {
                 <div key={col.country} className="flex flex-col justify-between">
                   <div>
                     {/* Destination Title */}
-                    <h3 className="text-black font-bold text-base sm:text-[17.5px] leading-tight">
+                    <h3 className="text-black font-semibold text-[14.5px] sm:text-[15.5px] leading-tight">
                       {col.country}
                     </h3>
 
                     {/* Tours Count */}
-                    <span className="text-gray-500 text-xs sm:text-[13.5px] font-normal block mt-1 mb-4">
+                    <span className="text-gray-500 text-[11px] sm:text-xs font-normal block mt-1 mb-3">
                       {col.count}
                     </span>
 
                     {/* Destination List */}
-                    <ul className="space-y-2 sm:space-y-2.5">
+                    <ul className="space-y-1.5 sm:space-y-2">
                       {col.items.map((item, idx) => (
                         <li
                           key={idx}
-                          className="text-gray-600 hover:text-black transition-colors text-[13px] sm:text-[14px] leading-snug flex items-start"
+                          className="text-gray-600 hover:text-black transition-colors text-xs sm:text-[13px] leading-snug flex items-start"
                         >
                           <span className="mr-2 text-gray-400 select-none">•</span>
                           <span>{item}</span>
@@ -288,10 +288,10 @@ export default function DestinationsWeLove() {
                   </div>
 
                   {/* View All Link */}
-                  <div className="pt-6 sm:pt-7">
+                  <div className="pt-5 sm:pt-6">
                     <Link
                       href="/destination"
-                      className="text-[#F26522] font-semibold text-[15px] sm:text-[16px] inline-flex items-center gap-1.5 hover:gap-2.5 transition-all group"
+                      className="text-[#F26522] font-medium text-xs sm:text-sm inline-flex items-center gap-1.5 hover:gap-2 transition-all group"
                     >
                       <span>View All</span>
                       <span className="transition-transform group-hover:translate-x-1">
@@ -308,3 +308,4 @@ export default function DestinationsWeLove() {
     </section>
   );
 }
+

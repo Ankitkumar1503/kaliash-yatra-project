@@ -141,21 +141,21 @@ export default function AdventuresSection() {
   };
 
   return (
-    <section className="w-full bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
       {/* Centered Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
-        <span className="text-[#F26522] text-sm sm:text-base font-medium tracking-wider uppercase block text-center mb-1.5">
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-7">
+        <span className="text-[#F26522] text-xs sm:text-[13px] font-medium tracking-wider uppercase block text-center mb-1.5">
           POPULAR ADVENTURES
         </span>
         <h2
-          className={`${anton.className} text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] uppercase tracking-tight text-black text-center leading-none`}
+          className={`${anton.className} text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] uppercase tracking-tight text-black text-center leading-none`}
         >
           OUR MOST POPULAR ADVENTURES
         </h2>
       </div>
 
-      {/* 5-Card Carousel Container (Centered max-w-[1650px]) */}
-      <div className="relative max-w-[1470px] mx-auto group">
+      {/* 5-Card Carousel Container */}
+      <div className="relative max-w-[1800px] mx-auto group">
         {/* Subtle Left Scroll Button */}
         <button
           onClick={scrollLeft}
@@ -187,7 +187,7 @@ export default function AdventuresSection() {
                 />
 
                 {/* Top-Left Badge: BESTSELLER */}
-                <span className="bg-[#FBBF24] text-black text-[11px] sm:text-xs font-bold px-2.5 py-1 uppercase tracking-wider absolute top-3 left-3 z-10 shadow-2xs rounded-none">
+                <span className="bg-[#FBBF24] text-black text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 uppercase tracking-wider absolute top-3 left-3 z-10 shadow-2xs rounded-none">
                   {item.badge}
                 </span>
 
@@ -195,7 +195,7 @@ export default function AdventuresSection() {
                 <button
                   onClick={(e) => toggleFavorite(`${item.id}-${idx}`, e)}
                   aria-label="Add to wishlist"
-                  className="bg-white rounded-full w-8 h-8 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
+                  className="bg-white rounded-full w-7 h-7 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
                 >
                   {favorites[`${item.id}-${idx}`] ? (
                     <FaHeart className="w-3.5 h-3.5 text-red-500" />
@@ -208,37 +208,37 @@ export default function AdventuresSection() {
               {/* Content Below Image: Compact & Clean */}
               <div className="pt-2.5 flex flex-col space-y-0.5">
                 {/* Title */}
-                <h3 className="font-semibold text-black text-sm lg:text-[15px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
+                <h3 className="font-semibold text-black text-xs sm:text-[13.5px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
                   {item.title}
                 </h3>
 
                 {/* Secondary Info: Duration · Location */}
-                <p className="text-gray-500 text-xs font-normal line-clamp-1">
+                <p className="text-gray-500 text-[11px] sm:text-xs font-normal line-clamp-1">
                   {item.subtitle}
                 </p>
 
                 {/* Rating Row */}
-                <div className="flex items-center gap-1.5 pt-1.5 flex-wrap">
+                <div className="flex items-center gap-1.5 pt-1 flex-wrap">
                   {/* Orange Rating Box */}
-                  <span className="bg-[#F26522] text-white font-bold w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-xs rounded-none shrink-0">
+                  <span className="bg-[#F26522] text-white font-semibold w-6 h-6 sm:w-6.5 sm:h-6.5 flex items-center justify-center text-[11px] rounded-none shrink-0">
                     {item.rating.toFixed(1)}
                   </span>
                   {/* Stars */}
-                  <div className="flex items-center text-[#FBBF24] text-[11px] space-x-0.5 shrink-0">
+                  <div className="flex items-center text-[#FBBF24] text-[10px] space-x-0.5 shrink-0">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} />
                     ))}
                   </div>
                   {/* Review Text */}
-                  <span className="text-gray-600 text-xs font-normal">
+                  <span className="text-gray-500 text-[11px] sm:text-xs font-normal">
                     {item.reviewText} {item.reviewCount} reviews
                   </span>
                 </div>
 
                 {/* Price Line */}
-                <div className="pt-1 text-xs text-gray-800 flex items-center">
+                <div className="pt-0.5 text-xs text-gray-800 flex items-center">
                   <span>Starting from</span>
-                  <span className="text-[#F26522] font-semibold text-sm sm:text-[15px] ml-1">
+                  <span className="text-[#F26522] font-semibold text-xs sm:text-sm ml-1">
                     {item.price}
                   </span>
                 </div>

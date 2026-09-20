@@ -35,28 +35,28 @@ export default function Header() {
     <header className="w-full bg-white top-0 z-50 transition-all duration-200">
       {/* 1. TOP CONTACT / SOCIAL BAR */}
       <div className="w-full bg-white text-gray-500 text-xs border-b border-gray-200">
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-2 flex justify-between items-center">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-5 lg:px-6 xl:px-8 py-2 flex justify-between items-center">
           {/* Left: Phone & Email */}
           <div className="flex items-center space-x-6">
             <a
               href="tel:+1234567890"
               className="flex items-center space-x-2 text-gray-600 hover:text-[#F26522] transition-colors"
             >
-              <FaPhoneAlt className="text-gray-500 text-sm" />
+              <FaPhoneAlt className="text-gray-500 text-xs sm:text-sm" />
               <span>+123 456 7890</span>
             </a>
             <a
               href="mailto:marketing@bztravel.com.vn"
               className="hidden sm:flex items-center space-x-2 text-gray-600 hover:text-[#F26522] transition-colors"
             >
-              <FaEnvelope className="text-gray-500 text-sm" />
+              <FaEnvelope className="text-gray-500 text-xs sm:text-sm" />
               <span>marketing@bztravel.com.vn</span>
             </a>
           </div>
 
           {/* Right: Social Share & Icons */}
           <div className="flex items-center space-x-3">
-            <span className="text-gray-500 font-normal text-sm">Social Share</span>
+            <span className="text-gray-500 font-normal text-xs sm:text-sm">Social Share</span>
             <div className="flex items-center space-x-2.5">
               <a
                 href="#"
@@ -93,7 +93,7 @@ export default function Header() {
 
       {/* 2. MAIN NAVIGATION HEADER */}
       <div className="w-full bg-white border-b border-gray-100">
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between relative h-16 sm:h-18 lg:h-20">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-5 lg:px-6 xl:px-8 flex items-center justify-between relative h-16 sm:h-18 lg:h-20">
           {/* Left: Logo (Starts close to left edge with container padding) */}
           <div className="flex items-center shrink-0">
             <Link href="/" className="flex items-center group">
@@ -103,7 +103,7 @@ export default function Header() {
                 width={190}
                 height={46}
                 priority
-                className="h-11 sm:h-12 md:h-13 lg:h-14 w-auto object-contain transition-transform duration-200 group-hover:opacity-95"
+                className="h-10 sm:h-11 md:h-12 lg:h-13 w-auto object-contain transition-transform duration-200 group-hover:opacity-95"
               />
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-bold text-black hover:text-[#F26522] transition-colors uppercase tracking-wider text-xs md:text-sm whitespace-nowrap"
+                className="font-medium md:font-semibold text-black hover:text-[#F26522] transition-colors uppercase tracking-wide text-xs md:text-[13px] whitespace-nowrap"
               >
                 {link.name}
               </Link>
@@ -125,7 +125,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center shrink-0">
             <Link
               href="/destination"
-              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-sm px-5 sm:px-6 py-2.5 shadow-xs hover:shadow-md transition-all duration-200 whitespace-nowrap inline-flex items-center justify-center cursor-pointer"
+              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-[13px] px-4 sm:px-5 py-2 shadow-xs hover:shadow-md transition-all duration-200 whitespace-nowrap inline-flex items-center justify-center cursor-pointer"
             >
               Plan Your Trip
             </Link>
@@ -135,7 +135,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center space-x-3">
             <Link
               href="/destination"
-              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs px-3.5 py-1.5 shadow-xs transition-colors whitespace-nowrap inline-flex items-center justify-center"
+              className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs px-3 py-1.5 shadow-xs transition-colors whitespace-nowrap inline-flex items-center justify-center"
             >
               Plan Your Trip
             </Link>
@@ -164,7 +164,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="font-bold text-black hover:text-[#F26522] transition-colors uppercase tracking-wider text-sm py-1.5 border-b border-gray-50"
+                className="font-semibold text-black hover:text-[#F26522] transition-colors uppercase tracking-wide text-xs sm:text-[13px] py-1.5 border-b border-gray-50"
               >
                 {link.name}
               </Link>
@@ -174,7 +174,7 @@ export default function Header() {
           <Link
             href="/destination"
             onClick={() => setIsMenuOpen(false)}
-            className="block w-full text-center bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-sm px-5 py-2.5 shadow-xs transition-colors mb-4"
+            className="block w-full text-center bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-[13px] px-4 py-2 shadow-xs transition-colors mb-4"
           >
             Plan Your Trip
           </Link>

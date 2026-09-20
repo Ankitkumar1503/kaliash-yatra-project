@@ -50,21 +50,21 @@ const galleryData: GalleryItem[] = [
 
 export default function TravelGallery() {
   return (
-    <section className="w-full bg-white py-12 md:py-16">
+    <section className="w-full bg-white py-10 sm:py-12 md:py-14">
       {/* Centered Header */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 px-4 md:px-6">
-        <span className="text-[#38BDF8] text-xs sm:text-sm font-semibold tracking-widest uppercase block mb-1.5 text-center">
-          MODERN & BEAUTIFUL
+      <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-9 px-4 md:px-6">
+        <span className="text-[#38BDF8] text-xs sm:text-[13px] font-medium tracking-widest uppercase block mb-1 text-center">
+          MODERN &amp; BEAUTIFUL
         </span>
         <h2
-          className={`${playfair.className} text-2xl md:text-3xl lg:text-4xl font-bold text-black text-center mt-1 leading-tight`}
+          className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black text-center mt-1 leading-tight`}
         >
           The Travel Gallery
         </h2>
       </div>
 
-      {/* Contained 5-Image Gallery Grid with gap-4 and alternating vertical heights */}
-      <div className="">
+      {/* Contained 5-Image Gallery Grid */}
+      <div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 items-center">
           {galleryData.map((item) => (
             <div

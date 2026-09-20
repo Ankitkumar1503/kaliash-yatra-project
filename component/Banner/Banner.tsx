@@ -196,21 +196,21 @@ export default function Banner() {
     <section className="relative w-full bg-[#f2f5f6] overflow-hidden">
       {/* 50% / 50% Two-Column Split Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
-        {/* LEFT CONTENT AREA: starts at left ~35px on desktop */}
-        <div className="flex flex-col justify-start items-start pl-6 sm:pl-8 lg:pl-[35px] pr-6 lg:pr-8 pt-10 sm:pt-14 lg:pt-[115px] pb-12 lg:pb-[130px] z-10">
-          {/* Badge: starts at y ≈ 115px */}
-          <div className="inline-flex items-center bg-[#fdeee9] text-gray-800 text-xs sm:text-sm font-medium rounded-full p-1 pr-3.5 mb-[32px] sm:mb-[36px] shadow-2xs">
-            <span className="bg-[#F26522] text-white font-bold px-3 py-0.5 rounded-full text-xs mr-2">
+        {/* LEFT CONTENT AREA */}
+        <div className="flex flex-col justify-start items-start pl-6 sm:pl-8 lg:pl-10 xl:pl-16 2xl:pl-20 pr-6 lg:pr-8 pt-8 sm:pt-12 lg:pt-[85px] pb-10 lg:pb-[100px] z-10">
+          {/* Badge */}
+          <div className="inline-flex items-center bg-[#fdeee9] text-gray-800 text-xs sm:text-[13px] font-medium rounded-full p-1 pr-3 mb-[22px] sm:mb-[26px] shadow-2xs">
+            <span className="bg-[#F26522] text-white font-semibold px-2.5 py-0.5 rounded-full text-[11px] mr-2">
               Trusted
             </span>
-            <span className="font-semibold text-gray-800 text-xs sm:text-sm">
+            <span className="font-medium text-gray-800 text-xs sm:text-[13px]">
               {slide.badgeText}
             </span>
           </div>
 
-          {/* Headline: starts at y ≈ 188px, font-size ~84-88px on desktop, exactly 2 lines */}
+          {/* Headline: target 60-68px on desktop, exactly 2 lines */}
           <h1
-            className={`${anton.className} text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] 2xl:text-[88px] text-black leading-[0.92] uppercase tracking-tight mb-[28px] sm:mb-[32px] lg:mb-[36px]`}
+            className={`${anton.className} text-3xl sm:text-5xl md:text-6xl lg:text-[58px] xl:text-[64px] 2xl:text-[68px] text-black leading-[0.96] uppercase tracking-tight mb-[20px] sm:mb-[24px]`}
           >
             <span className="block whitespace-nowrap">
               {slide.headlineLine1}
@@ -220,24 +220,24 @@ export default function Banner() {
             </span>
           </h1>
 
-          {/* Description: starts at y ≈ 389px, max-w ~680-700px, 2 lines */}
-          <p className="text-gray-700 text-sm sm:text-base lg:text-[17px] xl:text-[18px] font-normal leading-relaxed max-w-[680px] mb-[30px] sm:mb-[34px]">
+          {/* Description: refined font size ~15px, comfortable readability */}
+          <p className="text-gray-700 text-xs sm:text-sm lg:text-[15px] xl:text-[15.5px] font-normal leading-relaxed max-w-[620px] mb-[24px] sm:mb-[28px]">
             {slide.description}
           </p>
 
-          {/* Explore Tours Button: starts at y ≈ 479px, width ≈ 283px, height ≈ 78px */}
+          {/* Explore Tours Button: refined height & font size */}
           <Link
             href={slide.ctaLink}
-            className="w-full sm:w-[283px] h-[60px] sm:h-[70px] lg:h-[78px] bg-[#F26522] hover:bg-[#d8480b] text-white font-semibold text-base sm:text-lg lg:text-[19px] inline-flex items-center justify-center transition-all duration-200 rounded-none shadow-xs hover:shadow-md cursor-pointer"
+            className="w-full sm:w-[220px] lg:w-[240px] h-[48px] sm:h-[52px] lg:h-[56px] bg-[#F26522] hover:bg-[#d8480b] text-white font-semibold text-sm sm:text-[15px] inline-flex items-center justify-center transition-all duration-200 rounded-none shadow-xs hover:shadow-md cursor-pointer"
           >
             {slide.ctaText}
           </Link>
         </div>
 
-        {/* RIGHT IMAGE AREA: starts at 50% viewport, top ≈ 45px below hero top */}
-        <div className="relative w-full pb-0 h-[400px] sm:h-[500px] md:h-[600px] lg:h-auto min-h-[400px] lg:min-h-[745px] flex flex-col justify-end">
-          {/* Curved Mountain Image Container: rounded-tl ≈ 170px, flush right & bottom, ~700px tall */}
-          <div className="relative w-full h-full min-h-[360px] sm:min-h-[460px] md:min-h-[560px] lg:min-h-[700px] overflow-hidden rounded-tl-[130px] sm:rounded-tl-[150px] lg:rounded-tl-[175px]">
+        {/* RIGHT IMAGE AREA */}
+        <div className="relative w-full pb-0 h-[380px] sm:h-[460px] md:h-[520px] lg:h-auto min-h-[380px] lg:min-h-[640px] flex flex-col justify-end">
+          {/* Curved Mountain Image Container */}
+          <div className="relative w-full h-full min-h-[340px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[600px] overflow-hidden rounded-tl-[110px] sm:rounded-tl-[130px] lg:rounded-tl-[150px]">
             <Image
               src={slide.image}
               alt={slide.alt}

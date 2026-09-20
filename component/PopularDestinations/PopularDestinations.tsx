@@ -78,31 +78,31 @@ export default function PopularDestinations() {
   };
 
   return (
-    <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-6 lg:px-10">
-      <div className="max-w-[1470px] mx-auto">
+    <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
+      <div className="max-w-[1800px] mx-auto">
         {/* Section Header: Left Title block + Right Minimal Arrows */}
-        <div className="flex justify-between items-end mb-6 sm:mb-8">
+        <div className="flex justify-between items-end mb-5 sm:mb-7">
           {/* Left Side */}
           <div>
-            <span className="text-[#F26522] text-xs sm:text-sm md:text-[15px] font-medium tracking-wider uppercase block mb-1">
+            <span className="text-[#F26522] text-xs sm:text-[13px] font-medium tracking-wider uppercase block mb-1">
               MODERN &amp; BEAUTIFUL
             </span>
             <h2
-              className={`${playfair.className} text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-black leading-tight`}
+              className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black leading-tight`}
             >
               Popular Destinations
             </h2>
           </div>
 
           {/* Right Side: Minimal Navigation Arrows */}
-          <div className="flex items-center space-x-4 sm:space-x-5 pb-1">
+          <div className="flex items-center space-x-3 sm:space-x-4 pb-1">
             <button
               onClick={handleScrollLeft}
               aria-label="Previous destinations"
               className="text-black hover:opacity-75 transition-opacity p-1 cursor-pointer focus:outline-none"
             >
               <svg
-                className="w-6 h-6 sm:w-7 sm:h-7"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export default function PopularDestinations() {
               className="text-[#F26522] hover:opacity-75 transition-opacity p-1 cursor-pointer focus:outline-none"
             >
               <svg
-                className="w-6 h-6 sm:w-7 sm:h-7"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -151,7 +151,7 @@ export default function PopularDestinations() {
                 className="flex-shrink-0 w-[260px] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc((100%-4*1.5rem)/5)] snap-start group cursor-pointer"
               >
                 {/* 2:1 Aspect Ratio Landscape Image */}
-                <div className="relative w-full aspect-[2/1] overflow-hidden mb-3 sm:mb-3.5 bg-gray-100 rounded-none">
+                <div className="relative w-full aspect-[2/1] overflow-hidden mb-2.5 sm:mb-3 bg-gray-100 rounded-none">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -163,10 +163,10 @@ export default function PopularDestinations() {
 
                 {/* Centered Destination Name and Description */}
                 <div className="text-center px-1">
-                  <h3 className="font-bold text-black text-[17.5px] sm:text-[19px] leading-snug group-hover:text-[#F26522] transition-colors">
+                  <h3 className="font-semibold text-black text-sm sm:text-base leading-snug group-hover:text-[#F26522] transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-gray-700 text-xs sm:text-[14px] md:text-[14.5px] font-normal leading-relaxed mt-1">
+                  <p className="text-gray-700 text-[11px] sm:text-xs md:text-[13px] font-normal leading-relaxed mt-0.5">
                     {item.description}
                   </p>
                 </div>

@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .site-container {
+    width: 100%;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .site-container {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .site-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .site-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

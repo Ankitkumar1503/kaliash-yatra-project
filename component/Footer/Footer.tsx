@@ -45,20 +45,20 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white text-gray-700 border-t border-gray-100">
       {/* Main Footer Container (5 Columns with Vertical Dividers) */}
-      <div className="max-w-[1470px] mx-auto py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-0">
+      <div className="max-w-[1800px] mx-auto py-10 md:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-0">
           {/* Column 1 — Logo + Description (approx 25%) */}
           <div className="lg:col-span-3 xl:col-span-3 pr-0 lg:pr-8 xl:pr-10 flex flex-col justify-start">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-3.5">
               <Image
                 src="/logo.png"
                 alt="Mission Nepal Holidays"
                 width={190}
                 height={46}
-                className="h-20 sm:h-20 w-auto object-contain"
+                className="h-12 sm:h-14 w-auto object-contain"
               />
             </Link>
-            <p className="text-gray-500 text-[14.5px] sm:text-[15.5px] leading-relaxed max-w-[290px] font-normal">
+            <p className="text-gray-500 text-xs sm:text-[13.5px] leading-relaxed max-w-[280px] font-normal">
               At Mission Nepal Holidays, we design meaningful journeys across
               the Himalayas and beyond, creating unforgettable travel
               experiences.
@@ -66,29 +66,29 @@ export default function Footer() {
           </div>
 
           {/* Column 2 — CONTACT US (approx 18%) */}
-          <div className="lg:col-span-2 xl:col-span-2 px-0 lg:px-10 xl:px-8 border-l-0 lg:border-l border-gray-200 flex flex-col justify-start">
-            <h3 className="font-bold uppercase text-black text-[15px] sm:text-[16px] tracking-wide mb-4 sm:mb-5">
+          <div className="lg:col-span-2 xl:col-span-2 px-0 lg:px-8 xl:px-8 border-l-0 lg:border-l border-gray-200 flex flex-col justify-start">
+            <h3 className="font-semibold uppercase text-black text-xs sm:text-[13.5px] tracking-wide mb-3 sm:mb-4">
               CONTACT US
             </h3>
-            <div className="space-y-4 text-sm">
+            <div className="space-y-3.5 text-xs sm:text-sm">
               <div>
-                <p className="text-gray-500 text-[13.5px] sm:text-[14px] mb-1 font-normal">
+                <p className="text-gray-500 text-[11px] sm:text-xs mb-0.5 font-normal">
                   Toll Free Customer Care
                 </p>
                 <a
                   href="tel:+12345678902666"
-                  className="font-bold text-[#F26522] text-[15px] sm:text-[16px] hover:underline block"
+                  className="font-semibold text-[#F26522] text-xs sm:text-[14px] hover:underline block"
                 >
                   +(123) 456 7890 2666
                 </a>
               </div>
-              <div className="pt-1">
-                <p className="text-gray-500 text-[13.5px] sm:text-[14px] mb-1 font-normal">
+              <div className="pt-0.5">
+                <p className="text-gray-500 text-[11px] sm:text-xs mb-0.5 font-normal">
                   Need live support?
                 </p>
                 <a
                   href="mailto:Support@gotravel.com.vn"
-                  className="font-semibold text-[#F26522] text-[14px] sm:text-[14.5px] hover:underline block"
+                  className="font-medium text-[#F26522] text-xs sm:text-[13px] hover:underline block"
                 >
                   Support@gotravel.com.vn
                 </a>
@@ -98,15 +98,15 @@ export default function Footer() {
 
           {/* Column 3 — OUR COMPANY (approx 18%) */}
           <div className="lg:col-span-2 xl:col-span-2 px-0 lg:px-6 xl:px-8 border-l-0 lg:border-l border-gray-200 flex flex-col justify-start">
-            <h3 className="font-bold uppercase text-black text-[15px] sm:text-[16px] tracking-wide mb-4 sm:mb-5">
+            <h3 className="font-semibold uppercase text-black text-xs sm:text-[13.5px] tracking-wide mb-3 sm:mb-4">
               OUR COMPANY
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3 text-[14px] sm:text-[15px]">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-[13px]">
               {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-700 hover:text-[#F26522] transition-colors"
+                    className="text-gray-600 hover:text-[#F26522] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -117,15 +117,15 @@ export default function Footer() {
 
           {/* Column 4 — SUPPORT (approx 18%) */}
           <div className="lg:col-span-2 xl:col-span-2 px-0 lg:px-6 xl:px-8 border-l-0 lg:border-l border-gray-200 flex flex-col justify-start">
-            <h3 className="font-bold uppercase text-black text-[15px] sm:text-[16px] tracking-wide mb-4 sm:mb-5">
+            <h3 className="font-semibold uppercase text-black text-xs sm:text-[13.5px] tracking-wide mb-3 sm:mb-4">
               SUPPORT
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3 text-[14px] sm:text-[15px]">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-[13px]">
               {supportLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-700 hover:text-[#F26522] transition-colors"
+                    className="text-gray-600 hover:text-[#F26522] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -136,15 +136,15 @@ export default function Footer() {
 
           {/* Column 5 — OTHER SERVICES (approx 21%) */}
           <div className="lg:col-span-3 xl:col-span-3 pl-0 lg:pl-6 xl:pl-8 border-l-0 lg:border-l border-gray-200 flex flex-col justify-start">
-            <h3 className="font-bold uppercase text-black text-[15px] sm:text-[16px] tracking-wide mb-4 sm:mb-5">
+            <h3 className="font-semibold uppercase text-black text-xs sm:text-[13.5px] tracking-wide mb-3 sm:mb-4">
               OTHER SERVICES
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3 text-[14px] sm:text-[15px]">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-[13px]">
               {otherServicesLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-700 hover:text-[#F26522] transition-colors"
+                    className="text-gray-600 hover:text-[#F26522] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -157,13 +157,13 @@ export default function Footer() {
 
       {/* Bottom Copyright Bar */}
       <div className="border-t border-gray-200">
-        <div className="max-w-[1650px] mx-auto px-6 sm:px-8 lg:px-12 py-4 sm:py-5 flex flex-col md:flex-row justify-between items-center text-xs sm:text-[13.5px] text-gray-700 gap-4 md:gap-0">
+        <div className="max-w-[1800px] mx-auto py-3.5 sm:py-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-3 md:gap-0">
           {/* Left Side: Copyright & Legal Links */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-center sm:text-left">
-            <span className="font-normal text-gray-800">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-center sm:text-left">
+            <span className="font-normal text-gray-600">
               © 2026 Kailashyatraguide All rights reserved.
             </span>
-            <div className="flex items-center space-x-4 sm:space-x-5 text-gray-800 font-medium">
+            <div className="flex items-center space-x-3 sm:space-x-4 text-gray-600 font-medium">
               <Link
                 href="/privacy"
                 className="hover:text-[#F26522] transition-colors"
@@ -186,16 +186,16 @@ export default function Footer() {
           </div>
 
           {/* Right Side: Language, Social Share, Icons */}
-          <div className="flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-2">
             {/* Globe + English (US) */}
-            <div className="flex items-center space-x-2 text-gray-800 font-medium cursor-pointer hover:text-[#F26522] transition-colors">
-              <FaGlobe className="text-gray-700 text-sm" />
+            <div className="flex items-center space-x-2 text-gray-600 font-medium cursor-pointer hover:text-[#F26522] transition-colors">
+              <FaGlobe className="text-gray-600 text-xs sm:text-sm" />
               <span>English (US)</span>
             </div>
 
             {/* Social Share & Icons */}
-            <div className="flex items-center space-x-3.5">
-              <span className="font-medium text-gray-800">Social Share</span>
+            <div className="flex items-center space-x-3">
+              <span className="font-medium text-gray-600">Social Share</span>
               <div className="flex items-center space-x-3">
                 <a
                   href="#"
