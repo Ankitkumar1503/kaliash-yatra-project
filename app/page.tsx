@@ -1,6 +1,7 @@
 import Header from "@/component/Header/Header";
 import Banner from "@/component/Banner/Banner";
 import PopularDestinations from "@/component/PopularDestinations/PopularDestinations";
+import DestinationsWeLove from "@/component/DestinationsWeLove/DestinationsWeLove";
 import BestTour from "@/component/BestTour/BestTour";
 import ConceptSection from "@/component/ConceptSection/ConceptSection";
 import AdventuresSection from "@/component/AdventuresSection/AdventuresSection";
@@ -9,6 +10,7 @@ import TravelGallery from "@/component/TravelGallery/TravelGallery";
 import UpcomingTrips from "@/component/UpcomingTrips/UpcomingTrips";
 import Testimonials from "@/component/Testimonials/Testimonials";
 import FAQSection from "@/component/FAQSection/FAQSection";
+import NewsletterSubscription from "@/component/NewsletterSubscription/NewsletterSubscription";
 import Footer from "@/component/Footer/Footer";
 
 export default function Home() {
@@ -20,12 +22,14 @@ export default function Home() {
         <BestTour />
         <ConceptSection />
         <PopularDestinations />
+        <DestinationsWeLove />
         <AdventuresSection />
         <TravelTips />
-        <TravelGallery />
-        <UpcomingTrips />
+        {/* <UpcomingTrips /> */}
         <Testimonials />
+        <TravelGallery />
         <FAQSection />
+        <NewsletterSubscription />
       </main>
       <Footer />
     </div>

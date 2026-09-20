@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Lora, Anton } from "next/font/google";
+import { Anton } from "next/font/google";
 import {
   FaStar,
   FaRegHeart,
@@ -10,12 +10,6 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
-
-const lora = Lora({
-  subsets: ["latin"],
-  style: ["italic", "normal"],
-  weight: ["400", "500"],
-});
 
 const anton = Anton({
   subsets: ["latin"],
@@ -27,7 +21,7 @@ export interface Adventure {
   image: string;
   badge: string;
   title: string;
-  location: string;
+  subtitle: string;
   rating: number;
   reviewText: string;
   reviewCount: string;
@@ -38,9 +32,9 @@ const adventureData: Adventure[] = [
   {
     id: "1",
     image: "/images/adventures/adv-1.jpg",
-    badge: "BREAKFAST",
-    title: "Kailash Mansarovar Trek",
-    location: "Darchen, Tibet Autonomous Region",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Trek",
+    subtitle: "14 Days · Everest Region",
     rating: 4.8,
     reviewText: "Exceptional",
     reviewCount: "3,014",
@@ -49,31 +43,75 @@ const adventureData: Adventure[] = [
   {
     id: "2",
     image: "/images/adventures/adv-2.jpg",
-    badge: "BREAKFAST",
-    title: "Annapurna Base Camp Trek",
-    location: "Annapurna Sanctuary, Nepal",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Trek",
+    subtitle: "14 Days · Everest Region",
+    rating: 4.8,
+    reviewText: "Exceptional",
+    reviewCount: "3,014",
+    price: "$89.00",
+  },
+  {
+    id: "3",
+    image: "/images/adventures/adv-3.jpg",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Trek",
+    subtitle: "14 Days · Everest Region",
+    rating: 4.8,
+    reviewText: "Exceptional",
+    reviewCount: "3,014",
+    price: "$89.00",
+  },
+  {
+    id: "4",
+    image: "/images/adventures/adv-4.jpg",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Trek",
+    subtitle: "14 Days · Everest Region",
+    rating: 4.8,
+    reviewText: "Exceptional",
+    reviewCount: "3,014",
+    price: "$89.00",
+  },
+  {
+    id: "5",
+    image: "/images/adventures/adv-target-5.jpg",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Trek",
+    subtitle: "14 Days · Everest Region",
+    rating: 4.8,
+    reviewText: "Exceptional",
+    reviewCount: "3,014",
+    price: "$89.00",
+  },
+  {
+    id: "6",
+    image: "/images/adventures/adv-1.jpg",
+    badge: "BESTSELLER",
+    title: "Kailash Mansarovar Yatra",
+    subtitle: "15 Days · Tibet Region",
     rating: 4.9,
     reviewText: "Exceptional",
     reviewCount: "2,840",
     price: "$95.00",
   },
   {
-    id: "3",
-    image: "/images/adventures/adv-3.jpg",
-    badge: "BREAKFAST",
-    title: "Everest Base Camp Trek",
-    location: "Solukhumbu, Nepal",
+    id: "7",
+    image: "/images/adventures/adv-2.jpg",
+    badge: "BESTSELLER",
+    title: "Annapurna Sanctuary Trek",
+    subtitle: "12 Days · Annapurna Region",
     rating: 5.0,
     reviewText: "Exceptional",
     reviewCount: "3,450",
     price: "$110.00",
   },
   {
-    id: "4",
+    id: "8",
     image: "/images/adventures/adv-4.jpg",
-    badge: "BREAKFAST",
+    badge: "BESTSELLER",
     title: "Lumbini Heritage Pilgrimage",
-    location: "Lumbini, Nepal",
+    subtitle: "8 Days · Terai Plains",
     rating: 4.7,
     reviewText: "Exceptional",
     reviewCount: "1,920",
@@ -84,17 +122,16 @@ const adventureData: Adventure[] = [
 export default function AdventuresSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});
-  const [activeIndex, setActiveIndex] = useState<number>(1);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: -320, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
     }
   };
 
@@ -104,103 +141,104 @@ export default function AdventuresSection() {
   };
 
   return (
-    <section className="w-full bg-white py-12 md:py-16 px-4 md:px-6 lg:px-8">
-      {/* Centered Header */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-        <span
-          className={`${lora.className} italic text-gray-500 text-sm sm:text-base block`}
-        >
-          Modern & Beautiful
+    <section className="w-full bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      {/* Centered Section Header */}
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+        <span className="text-[#F26522] text-sm sm:text-base font-medium tracking-wider uppercase block text-center mb-1.5">
+          POPULAR ADVENTURES
         </span>
         <h2
-          className={`${anton.className} text-2xl sm:text-3xl md:text-4xl lg:text-[40px] uppercase tracking-tight text-black mt-1.5 leading-none`}
+          className={`${anton.className} text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] uppercase tracking-tight text-black text-center leading-none`}
         >
           OUR MOST POPULAR ADVENTURES
         </h2>
       </div>
 
-      {/* 4-Card Carousel */}
-      <div className="relative max-w-7xl mx-auto group">
-        {/* Left Circular Arrow Button */}
+      {/* 5-Card Carousel Container (Centered max-w-[1650px]) */}
+      <div className="relative max-w-[1470px] mx-auto group">
+        {/* Subtle Left Scroll Button */}
         <button
           onClick={scrollLeft}
           aria-label="Previous adventures"
-          className="absolute -left-3 sm:-left-5 top-1/3 -translate-y-1/2 z-20 bg-white text-gray-800 p-3 rounded-full shadow-md border border-gray-100 hover:bg-gray-50 transition-all opacity-90 hover:opacity-100 hidden sm:flex items-center justify-center focus:outline-none cursor-pointer"
+          className="absolute -left-2 lg:-left-3.5 top-[38%] -translate-y-1/2 z-20 bg-white/95 text-gray-700 hover:text-black p-2.5 rounded-full shadow-md border border-gray-100 hover:bg-white transition-all opacity-0 group-hover:opacity-100 hidden sm:flex items-center justify-center focus:outline-none cursor-pointer"
         >
-          <FaChevronLeft className="w-4 h-4 text-gray-700" />
+          <FaChevronLeft className="w-3.5 h-3.5" />
         </button>
 
-        {/* Scrollable Track */}
+        {/* Scrollable Track (5 cards per view on desktop) */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2 px-1"
+          className="flex gap-4 xl:gap-5 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2 px-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {adventureData.map((item) => (
+          {adventureData.map((item, idx) => (
             <div
-              key={item.id}
-              className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[290px] lg:w-[calc(25%-18px)] snap-start group/card cursor-pointer"
+              key={`${item.id}-${idx}`}
+              className="flex-shrink-0 w-[270px] sm:w-[290px] md:w-[calc(33.333%-14px)] lg:w-[calc(20%-16px)] snap-start group/card cursor-pointer"
             >
-              {/* Image Container */}
-              <div className="relative rounded-lg overflow-hidden aspect-[4/5] h-56 sm:h-64 lg:h-68 w-full shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100">
+              {/* Card Image Container (Height ≈ 328px, Ratio ≈ 0.95, clean square corners) */}
+              <div className="relative overflow-hidden w-full h-[260px] sm:h-[180px] lg:h-[300px] shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100 rounded-none">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 768px) 280px, 290px"
-                  className="object-cover group-hover/card:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 1024px) 300px, 320px"
+                  className="object-cover object-center group-hover/card:scale-105 transition-transform duration-500"
                 />
 
-                {/* Top-Left Badge */}
-                <span className="bg-amber-400 text-black text-xs font-semibold px-3 py-1 rounded absolute top-3.5 left-3.5 z-10 shadow-2xs uppercase tracking-wider">
+                {/* Top-Left Badge: BESTSELLER */}
+                <span className="bg-[#FBBF24] text-black text-[11px] sm:text-xs font-bold px-2.5 py-1 uppercase tracking-wider absolute top-3 left-3 z-10 shadow-2xs rounded-none">
                   {item.badge}
                 </span>
 
-                {/* Top-Right Wishlist Button */}
+                {/* Top-Right Circular Favorite Button */}
                 <button
-                  onClick={(e) => toggleFavorite(item.id, e)}
+                  onClick={(e) => toggleFavorite(`${item.id}-${idx}`, e)}
                   aria-label="Add to wishlist"
-                  className="bg-white rounded-full p-2.5 absolute top-3.5 right-3.5 z-10 shadow-md hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
+                  className="bg-white rounded-full w-8 h-8 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
                 >
-                  {favorites[item.id] ? (
-                    <FaHeart className="w-4 h-4 text-red-500" />
+                  {favorites[`${item.id}-${idx}`] ? (
+                    <FaHeart className="w-3.5 h-3.5 text-red-500" />
                   ) : (
-                    <FaRegHeart className="w-4 h-4 text-gray-700 hover:text-red-500 transition-colors" />
+                    <FaRegHeart className="w-3.5 h-3.5 text-gray-700 hover:text-red-500 transition-colors" />
                   )}
                 </button>
               </div>
 
-              {/* Below Image Content */}
-              <div className="pt-3.5 flex flex-col space-y-1">
+              {/* Content Below Image: Compact & Clean */}
+              <div className="pt-2.5 flex flex-col space-y-0.5">
                 {/* Title */}
-                <h3 className="font-semibold text-black text-sm sm:text-base line-clamp-1 group-hover/card:text-[#F26522] transition-colors">
+                <h3 className="font-semibold text-black text-sm lg:text-[15px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
                   {item.title}
                 </h3>
 
-                {/* Location Subtext */}
-                <p className="text-gray-500 text-xs sm:text-sm font-normal">
-                  {item.location}
+                {/* Secondary Info: Duration · Location */}
+                <p className="text-gray-500 text-xs font-normal line-clamp-1">
+                  {item.subtitle}
                 </p>
 
                 {/* Rating Row */}
-                <div className="flex items-center gap-2 pt-1 flex-wrap">
-                  <span className="bg-[#F26522] text-white font-bold px-2 py-0.5 rounded text-xs">
+                <div className="flex items-center gap-1.5 pt-1.5 flex-wrap">
+                  {/* Orange Rating Box */}
+                  <span className="bg-[#F26522] text-white font-bold w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-xs rounded-none shrink-0">
                     {item.rating.toFixed(1)}
                   </span>
-                  <div className="flex items-center text-amber-400 text-xs space-x-0.5">
+                  {/* Stars */}
+                  <div className="flex items-center text-[#FBBF24] text-[11px] space-x-0.5 shrink-0">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} />
                     ))}
                   </div>
-                  <span className="text-gray-500 text-xs sm:text-sm">
+                  {/* Review Text */}
+                  <span className="text-gray-600 text-xs font-normal">
                     {item.reviewText} {item.reviewCount} reviews
                   </span>
                 </div>
 
                 {/* Price Line */}
-                <div className="pt-1.5 text-xs sm:text-sm text-gray-700 flex items-center">
+                <div className="pt-1 text-xs text-gray-800 flex items-center">
                   <span>Starting from</span>
-                  <span className="text-[#F26522] font-bold text-sm sm:text-base ml-1.5">
+                  <span className="text-[#F26522] font-semibold text-sm sm:text-[15px] ml-1">
                     {item.price}
                   </span>
                 </div>
@@ -209,45 +247,14 @@ export default function AdventuresSection() {
           ))}
         </div>
 
-        {/* Right Circular Arrow Button */}
+        {/* Subtle Right Scroll Button */}
         <button
           onClick={scrollRight}
           aria-label="Next adventures"
-          className="absolute -right-3 sm:-right-5 top-1/3 -translate-y-1/2 z-20 bg-[#F26522] hover:bg-[#d85417] text-white p-3 rounded-full shadow-md transition-all opacity-90 hover:opacity-100 hidden sm:flex items-center justify-center focus:outline-none cursor-pointer"
+          className="absolute -right-2 lg:-right-3.5 top-[38%] -translate-y-1/2 z-20 bg-white/95 text-gray-700 hover:text-black p-2.5 rounded-full shadow-md border border-gray-100 hover:bg-white transition-all opacity-0 group-hover:opacity-100 hidden sm:flex items-center justify-center focus:outline-none cursor-pointer"
         >
-          <FaChevronRight className="w-4 h-4 text-white" />
+          <FaChevronRight className="w-3.5 h-3.5" />
         </button>
-      </div>
-
-      {/* Centered Pagination Dots */}
-      <div className="flex justify-center items-center space-x-2 mt-8">
-        <button
-          onClick={() => setActiveIndex(0)}
-          aria-label="Slide 1"
-          className={`h-1.5 rounded-full transition-all duration-300 ${
-            activeIndex === 0
-              ? "w-7 bg-[#F26522]"
-              : "w-3 bg-gray-300 hover:bg-gray-400"
-          }`}
-        />
-        <button
-          onClick={() => setActiveIndex(1)}
-          aria-label="Slide 2"
-          className={`h-1.5 rounded-full transition-all duration-300 ${
-            activeIndex === 1
-              ? "w-7 bg-[#F26522]"
-              : "w-3 bg-gray-300 hover:bg-gray-400"
-          }`}
-        />
-        <button
-          onClick={() => setActiveIndex(2)}
-          aria-label="Slide 3"
-          className={`h-1.5 rounded-full transition-all duration-300 ${
-            activeIndex === 2
-              ? "w-7 bg-[#F26522]"
-              : "w-3 bg-gray-300 hover:bg-gray-400"
-          }`}
-        />
       </div>
     </section>
   );

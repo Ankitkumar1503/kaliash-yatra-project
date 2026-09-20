@@ -46,13 +46,20 @@ const blogData: BlogPost[] = [
     dateAuthor: "15/09/2022 - Admin",
     href: "/blog/top-monasteries-pokhara",
   },
+  {
+    id: "4",
+    image: "/images/blogs/blog-3.jpg",
+    title: "Top 5 Monasteries to Visit Around Pokhara",
+    dateAuthor: "15/09/2022 - Admin",
+    href: "/blog/top-monasteries-pokhara",
+  },
 ];
 
 export default function TravelTips() {
   return (
     <section className="w-full bg-white py-12 md:py-16 px-4 md:px-6 lg:px-8">
       {/* Centered Header */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+      <div className="text-center max-w-[1470px] mx-auto mb-8 sm:mb-10">
         <span
           className={`${lora.className} italic text-gray-500 text-sm sm:text-base block`}
         >
@@ -66,7 +73,7 @@ export default function TravelTips() {
       </div>
 
       {/* 3-Column Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-[1470px] mx-auto">
         {blogData.map((post) => (
           <Link
             key={post.id}
@@ -74,7 +81,7 @@ export default function TravelTips() {
             className="flex flex-col group cursor-pointer"
           >
             {/* Image Container */}
-            <div className="relative w-full h-48 sm:h-52 lg:h-56 overflow-hidden mb-3.5 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100 rounded-lg">
+            <div className="relative w-full h-48 sm:h-52 lg:h-68 overflow-hidden mb-3.5 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100">
               <Image
                 src={post.image}
                 alt={post.title}

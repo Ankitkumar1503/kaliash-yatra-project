@@ -64,7 +64,7 @@ export default function TravelGallery() {
       </div>
 
       {/* Contained 5-Image Gallery Grid with gap-4 and alternating vertical heights */}
-      <div className="px-4 md:px-6 lg:px-8">
+      <div className="">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 items-center">
           {galleryData.map((item) => (
             <div

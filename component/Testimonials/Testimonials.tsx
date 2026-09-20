@@ -13,6 +13,7 @@ export interface Testimonial {
   id: string;
   avatar: string;
   name: string;
+  location?: string;
   quote: string;
   rating: number;
 }
@@ -21,21 +22,32 @@ const testimonialsData: Testimonial[] = [
   {
     id: "1",
     avatar: "/images/testimonials/avatar-1.jpg",
-    name: "-Serah j.",
+    name: "Serah j.",
+    location: "United Kingdom",
     quote: '"An unforgettable journey. Highly recommended!"',
     rating: 5,
   },
   {
     id: "2",
     avatar: "/images/testimonials/avatar-2.jpg",
-    name: "-Serah j.",
+    name: "Serah j.",
+    location: "United Kingdom",
     quote: '"An unforgettable journey. Highly recommended!"',
     rating: 5,
   },
   {
     id: "3",
     avatar: "/images/testimonials/avatar-3.jpg",
-    name: "-Serah j.",
+    name: "Serah j.",
+    location: "United Kingdom",
+    quote: '"An unforgettable journey. Highly recommended!"',
+    rating: 5,
+  },
+  {
+    id: "4",
+    avatar: "/images/testimonials/avatar-3.jpg",
+    name: "Serah j.",
+    location: "United Kingdom",
     quote: '"An unforgettable journey. Highly recommended!"',
     rating: 5,
   },
@@ -43,11 +55,11 @@ const testimonialsData: Testimonial[] = [
 
 export default function Testimonials() {
   return (
-    <section className="w-full bg-[#F3F4F6] py-12 md:py-16 px-4 md:px-6 lg:px-8">
-      {/* Max-W-7xl matching the exact container width of the entire website */}
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-12 md:py-16 px-4 md:px-6 lg:px-8">
+      {/* Container matching the exact container width of the website */}
+      <div className="max-w-[1470px] mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-14">
+        <div className="text-center max-w-[1470px] mx-auto mb-6 md:mb-6">
           <span className="text-[#F26522] text-xs sm:text-sm font-semibold tracking-wider uppercase block mb-1">
             TESTIMONIALS
           </span>
@@ -58,45 +70,62 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* 3 Testimonials Cards Grid across max-w-7xl */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 pt-2">
-          {testimonialsData.map((item) => (
-            <div
-              key={item.id}
-              className="relative bg-white rounded-xl shadow-xs hover:shadow-md transition-all duration-200 pt-11 pb-7 px-6 sm:px-7 flex flex-col items-center text-center border border-gray-100 group"
-            >
-              {/* Overlapping Top Avatar */}
-              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full overflow-hidden border-3 border-white shadow-sm bg-gray-100 group-hover:scale-105 transition-transform duration-200">
-                <Image
-                  src={item.avatar}
-                  alt={item.name}
-                  fill
-                  sizes="64px"
-                  className="object-cover"
-                />
+        {/* Testimonials Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 pt-2">
+          {testimonialsData.map((item) => {
+            const displayName = item.name.replace(/^[-–—\s]+/, "");
+            const rawQuote = item.quote
+              .replace(/^["“”\s]+/, "")
+              .replace(/["“”\s]+$/, "");
+            const formattedQuote = `“${rawQuote}”`;
+
+            return (
+              <div
+                key={item.id}
+                className="bg-[#F8F8F8] p-6 sm:p-7 md:p-8 flex flex-col justify-between text-left min-h-[260px] sm:min-h-[270px] transition-all duration-200"
+              >
+                <div>
+                  {/* Top-Left Stars */}
+                  <div className="flex items-center space-x-1">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className="w-3.5 h-3.5 text-[#EAB308] fill-[#EAB308]"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Left-Aligned Testimonial Quote */}
+                  <p className="text-[#52525B] text-[15px] sm:text-[16px] font-normal leading-relaxed mt-7 sm:mt-8">
+                    {formattedQuote}
+                  </p>
+                </div>
+
+                {/* Bottom-Left User Information */}
+                <div className="flex items-center gap-3.5 mt-9 sm:mt-10 pt-2">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 bg-gray-200">
+                    <Image
+                      src={item.avatar}
+                      alt={displayName}
+                      fill
+                      sizes="44px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center text-left">
+                    <span className="text-gray-900 font-bold sm:font-semibold text-[15px] sm:text-[16px] leading-snug">
+                      {displayName}
+                    </span>
+                    {item.location && (
+                      <span className="text-gray-500 text-xs sm:text-[13px] leading-tight font-normal mt-0.5">
+                        {item.location}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
-
-              {/* Review Quote */}
-              <p className="text-gray-700 text-sm sm:text-base font-normal leading-relaxed mb-3">
-                {item.quote}
-              </p>
-
-              {/* Reviewer Name */}
-              <span className="text-gray-900 font-semibold text-xs sm:text-sm mb-2.5 block">
-                {item.name}
-              </span>
-
-              {/* 5 Orange Stars */}
-              <div className="flex items-center justify-center space-x-1">
-                {[...Array(item.rating)].map((_, i) => (
-                  <FaStar
-                    key={i}
-                    className="w-3.5 h-3.5 text-[#F26522] fill-[#F26522]"
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
