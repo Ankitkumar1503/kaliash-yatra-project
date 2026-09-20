@@ -57,9 +57,9 @@ export default function Testimonials() {
   return (
     <section className="w-full py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
       {/* Container matching the exact container width of the website */}
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-[1360px] mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-[1800px] mx-auto mb-6 sm:mb-7">
+        <div className="text-center max-w-[1360px] mx-auto mb-6 sm:mb-7">
           <span className="text-[#F26522] text-xs sm:text-[13px] font-medium tracking-wider uppercase block mb-1">
             TESTIMONIALS
           </span>

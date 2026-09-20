@@ -13,7 +13,7 @@ export default function ConceptSection() {
   return (
     <section className="w-full bg-white py-10 sm:py-14 lg:py-16 overflow-hidden">
       {/* Controlled Centered Content Container */}
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-[1360px] mx-auto">
         {/* ROW 1: Concept Heading (Left) & Large Landscape Image (Right) */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12 xl:gap-16">
           {/* Top-Left: Small Orange Label + Large Editorial Serif Text */}

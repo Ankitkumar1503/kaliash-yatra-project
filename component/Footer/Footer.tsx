@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white text-gray-700 border-t border-gray-100">
       {/* Main Footer Container (5 Columns with Vertical Dividers) */}
-      <div className="max-w-[1800px] mx-auto py-10 md:py-14">
+      <div className="max-w-[1360px] mx-auto py-10 md:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-0">
           {/* Column 1 — Logo + Description (approx 25%) */}
           <div className="lg:col-span-3 xl:col-span-3 pr-0 lg:pr-8 xl:pr-10 flex flex-col justify-start">
@@ -157,7 +157,7 @@ export default function Footer() {
 
       {/* Bottom Copyright Bar */}
       <div className="border-t border-gray-200">
-        <div className="max-w-[1800px] mx-auto py-3.5 sm:py-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-3 md:gap-0">
+        <div className="max-w-[1360px] mx-auto py-3.5 sm:py-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-3 md:gap-0">
           {/* Left Side: Copyright & Legal Links */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-center sm:text-left">
             <span className="font-normal text-gray-600">

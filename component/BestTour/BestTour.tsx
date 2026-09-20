@@ -111,7 +111,7 @@ export default function BestTour() {
 
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-[1360px] mx-auto">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 sm:mb-8 mx-auto gap-4 sm:gap-0">
           {/* Left side */}

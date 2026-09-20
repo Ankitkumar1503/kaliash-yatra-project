@@ -155,7 +155,7 @@ export default function AdventuresSection() {
       </div>
 
       {/* 5-Card Carousel Container */}
-      <div className="relative max-w-[1800px] mx-auto group">
+      <div className="relative max-w-[1360px] mx-auto group">
         {/* Subtle Left Scroll Button */}
         <button
           onClick={scrollLeft}

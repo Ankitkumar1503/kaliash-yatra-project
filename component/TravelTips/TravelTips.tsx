@@ -59,7 +59,7 @@ export default function TravelTips() {
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
       {/* Centered Header */}
-      <div className="text-center max-w-[1800px] mx-auto mb-7 sm:mb-9">
+      <div className="text-center max-w-[1360px] mx-auto mb-7 sm:mb-9">
         <span
           className={`${lora.className} italic text-gray-500 text-xs sm:text-sm block`}
         >
@@ -73,7 +73,7 @@ export default function TravelTips() {
       </div>
 
       {/* 4-Column Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 xl:gap-7 max-w-[1800px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 xl:gap-7 max-w-[1360px] mx-auto">
         {blogData.map((post) => (
           <Link
             key={post.id}

@@ -79,7 +79,7 @@ export default function PopularDestinations() {
 
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8">
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-[1360px] mx-auto">
         {/* Section Header: Left Title block + Right Minimal Arrows */}
         <div className="flex justify-between items-end mb-5 sm:mb-7">
           {/* Left Side */}

@@ -36,7 +36,7 @@ export default function NewsletterSubscription() {
       aria-label="Newsletter Subscription"
       className="w-full bg-[#FA4D09] py-8 sm:py-10 md:py-12"
     >
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-[1360px] mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 xl:gap-12">
           {/* Left Side: Icon + Text Group */}
           <div className="flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-7 text-center sm:text-left">
