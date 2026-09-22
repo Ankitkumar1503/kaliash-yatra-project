@@ -62,7 +62,7 @@ export default function ConceptSection() {
             </p>
             <div className="pt-1 sm:pt-2">
               <Link
-                href="/about"
+                href="/about-us"
                 className="w-full sm:w-[200px] lg:w-[220px] h-[44px] sm:h-[48px] lg:h-[50px] bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-sm inline-flex items-center justify-center transition-all duration-200 rounded-none shadow-xs hover:shadow-md cursor-pointer"
               >
                 About Us

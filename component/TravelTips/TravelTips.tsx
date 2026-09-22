@@ -58,19 +58,23 @@ const blogData: BlogPost[] = [
 export interface TravelTipsProps {
   eyebrow?: string;
   title?: string;
+  posts?: BlogPost[];
   className?: string;
 }
 
 export default function TravelTips({
   eyebrow = "Modern & Beautiful",
   title = "STAY UPDATE WITH KAILASHYATRA TIPS",
+  posts,
   className = "",
 }: TravelTipsProps = {}) {
+  const displayPosts = posts && posts.length > 0 ? posts : blogData;
+
   return (
-    <section className={`w-full bg-white py-10 sm:py-12 md:py-14 ${className}`}>
+    <section className={`w-full bg-white py-10 sm:py-12 md:py-16 ${className}`}>
       <div className="site-container">
         {/* Centered Header */}
-        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-9">
+        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-9 md:mb-10">
           <span
             className={`${lora.className} italic text-gray-500 text-xs sm:text-sm block`}
           >
@@ -84,20 +88,20 @@ export default function TravelTips({
         </div>
 
         {/* 4-Column Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 xl:gap-7">
-          {blogData.map((post) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 lg:gap-x-6 xl:gap-x-7 gap-y-7 sm:gap-y-8 lg:gap-y-9">
+          {displayPosts.map((post) => (
             <Link
               key={post.id}
               href={post.href}
               className="flex flex-col group cursor-pointer"
             >
               {/* Image Container */}
-              <div className="relative w-full h-48 sm:h-52 lg:h-64 overflow-hidden mb-3 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100">
+              <div className="relative w-full aspect-[4/3] overflow-hidden mb-3 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100">
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

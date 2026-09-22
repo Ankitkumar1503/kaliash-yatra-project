@@ -16,7 +16,7 @@ interface FooterLink {
 }
 
 const companyLinks: FooterLink[] = [
-  { label: "About Us", href: "/pages" },
+  { label: "About Us", href: "/about-us" },
   { label: "Careers", href: "/careers" },
   { label: "Blog", href: "/blog" },
   { label: "Press", href: "/press" },
@@ -26,7 +26,7 @@ const companyLinks: FooterLink[] = [
 
 const supportLinks: FooterLink[] = [
   { label: "Contact", href: "/contact" },
-  { label: "Legal Notice", href: "/legal" },
+  { label: "Legal Notice", href: "/legal-documents" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms and Conditions", href: "/terms" },
   { label: "Sitemap", href: "/sitemap" },

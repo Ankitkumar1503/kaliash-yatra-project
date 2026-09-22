@@ -25,7 +25,7 @@ const navLinks: NavItem[] = [
   { name: "BHUTAN", href: "/destination?country=bhutan" },
   { name: "TIBET", href: "/destination?country=tibet" },
   { name: "INDIA", href: "/destination?country=india" },
-  { name: "ABOUT US", href: "/pages" },
+  { name: "ABOUT US", href: "/about-us" },
 ];
 
 export default function Header() {

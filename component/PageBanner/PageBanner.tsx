@@ -54,7 +54,7 @@ export default function PageBanner({
       />
 
       {/* Content Container aligned with site-container */}
-      <div className="relative z-10 w-full max-w-[1360px] mx-auto py-6 sm:py-8 md:py-10 flex flex-col justify-center items-start text-left">
+      <div className="site-container relative z-10 w-full max-w-[1360px] mx-auto py-6 sm:py-8 md:py-10 flex flex-col justify-center items-start text-left">
         {/* Dynamic Breadcrumbs */}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-2 sm:mb-2.5">

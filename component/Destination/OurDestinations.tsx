@@ -91,8 +91,8 @@ export default function OurDestinations({
   };
 
   return (
-    <section className={`w-full bg-white py-10 sm:py-12 md:py-14 px-4 sm:px-5 lg:px-6 xl:px-8 ${className}`}>
-      <div className="max-w-[1360px] mx-auto">
+    <section className={`w-full bg-white py-10 sm:py-12 md:py-14 ${className}`}>
+      <div className="site-container">
         {/* Section Header: Left Title block + Right Controls */}
         <div className="flex justify-between items-end mb-5 sm:mb-7">
           {/* Left Side */}
