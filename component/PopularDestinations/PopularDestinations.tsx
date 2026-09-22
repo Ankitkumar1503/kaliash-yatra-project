@@ -26,7 +26,7 @@ const destinationData: Destination[] = [
     description: "Explore the Himalayas",
     toursCount: "120+ Tours",
     image: "/images/destinations/everest.jpg",
-    href: "/destination",
+    href: "/destination?country=nepal",
   },
   {
     id: "2",
@@ -34,7 +34,7 @@ const destinationData: Destination[] = [
     description: "Discover the Land of Happiness",
     toursCount: "28+ Tours",
     image: "/images/destinations/pokhara.jpg",
-    href: "/destination",
+    href: "/destination?country=bhutan",
   },
   {
     id: "3",
@@ -42,7 +42,7 @@ const destinationData: Destination[] = [
     description: "Journey to the Roof of the World",
     toursCount: "15+ Tours",
     image: "/images/destinations/mount-kailash.jpg",
-    href: "/destination",
+    href: "/destination?country=tibet",
   },
   {
     id: "4",
@@ -50,15 +50,15 @@ const destinationData: Destination[] = [
     description: "Experience timeless traditions",
     toursCount: "22+ Tours",
     image: "/images/destinations/lumbini.jpg",
-    href: "/destination",
+    href: "/destination?country=india",
   },
   {
     id: "5",
-    name: "International",
-    description: "Explore beyond the Himalayas",
+    name: "Everest Region",
+    description: "Heart of the Khumbu Himalayas",
     toursCount: "18+ Tours",
     image: "/images/destinations/kathmandu.jpg",
-    href: "/destination",
+    href: "/region/everest",
   },
 ];
 

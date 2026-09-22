@@ -24,6 +24,7 @@ const playfair = Playfair_Display({
 
 export interface Adventure {
   id: string;
+  slug: string;
   image: string;
   badge: string;
   title: string;
@@ -37,6 +38,7 @@ export interface Adventure {
 const adventureData: Adventure[] = [
   {
     id: "1",
+    slug: "everest-base-camp-trek",
     image: "/images/adventures/adv-1.jpg",
     badge: "BESTSELLER",
     title: "Everest Base Camp Trek",
@@ -48,80 +50,51 @@ const adventureData: Adventure[] = [
   },
   {
     id: "2",
+    slug: "mount-kailash-mansarovar-yatra",
     image: "/images/adventures/adv-2.jpg",
-    badge: "BESTSELLER",
-    title: "Everest Base Camp Trek",
-    subtitle: "14 Days · Everest Region",
-    rating: 4.8,
+    badge: "SACRED",
+    title: "Mount Kailash Pilgrimage Tour",
+    subtitle: "13 Days · Ngari, Tibet",
+    rating: 4.9,
     reviewText: "Exceptional",
-    reviewCount: "3,014",
-    price: "$89.00",
+    reviewCount: "2,450",
+    price: "$120.00",
   },
   {
     id: "3",
+    slug: "annapurna-circuit-trek",
     image: "/images/adventures/adv-3.jpg",
-    badge: "BESTSELLER",
-    title: "Everest Base Camp Trek",
-    subtitle: "14 Days · Everest Region",
+    badge: "CLASSIC",
+    title: "Annapurna Circuit & Thorong La",
+    subtitle: "16 Days · Annapurna Sanctuary",
     rating: 4.8,
     reviewText: "Exceptional",
-    reviewCount: "3,014",
-    price: "$89.00",
-  },
-  {
-    id: "4",
-    image: "/images/adventures/adv-4.jpg",
-    badge: "BESTSELLER",
-    title: "Everest Base Camp Trek",
-    subtitle: "14 Days · Everest Region",
-    rating: 4.8,
-    reviewText: "Exceptional",
-    reviewCount: "3,014",
-    price: "$89.00",
-  },
-  {
-    id: "5",
-    image: "/images/adventures/adv-5.jpg",
-    badge: "BESTSELLER",
-    title: "Everest Base Camp Trek",
-    subtitle: "14 Days · Everest Region",
-    rating: 4.8,
-    reviewText: "Exceptional",
-    reviewCount: "3,014",
-    price: "$89.00",
-  },
-  {
-    id: "6",
-    image: "/images/adventures/adv-1.jpg",
-    badge: "BESTSELLER",
-    title: "Kailash Mansarovar Yatra",
-    subtitle: "15 Days · Tibet Region",
-    rating: 4.9,
-    reviewText: "Exceptional",
-    reviewCount: "2,840",
+    reviewCount: "1,890",
     price: "$95.00",
   },
   {
-    id: "7",
-    image: "/images/adventures/adv-2.jpg",
-    badge: "BESTSELLER",
-    title: "Annapurna Sanctuary Trek",
-    subtitle: "12 Days · Annapurna Region",
-    rating: 5.0,
+    id: "4",
+    slug: "bhutan-cultural-odyssey",
+    image: "/images/adventures/adv-4.jpg",
+    badge: "EXCLUSIVE",
+    title: "Bhutan Cultural Odyssey",
+    subtitle: "7 Days · Paro & Thimphu",
+    rating: 4.9,
     reviewText: "Exceptional",
-    reviewCount: "3,450",
-    price: "$110.00",
+    reviewCount: "1,120",
+    price: "$145.00",
   },
   {
-    id: "8",
-    image: "/images/adventures/adv-4.jpg",
+    id: "5",
+    slug: "everest-base-camp-trek",
+    image: "/images/adventures/adv-5.jpg",
     badge: "BESTSELLER",
-    title: "Lumbini Heritage Pilgrimage",
-    subtitle: "8 Days · Terai Plains",
-    rating: 4.7,
+    title: "Gokyo Ri & Everest Circuit",
+    subtitle: "15 Days · Everest Region",
+    rating: 4.8,
     reviewText: "Exceptional",
-    reviewCount: "1,920",
-    price: "$75.00",
+    reviewCount: "2,150",
+    price: "$110.00",
   },
 ];
 
@@ -142,7 +115,7 @@ export default function AdventuresSection({
   title = "OUR MOST POPULAR ADVENTURES",
   titleFont = "anton",
   headerLayout = "center",
-  viewAllHref = "/tours",
+  viewAllHref = "/activities",
   rightLinkVariant = "arrow",
   rightLinkText = "View all Tour",
   showCircularArrow = false,
@@ -255,9 +228,10 @@ export default function AdventuresSection({
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {adventureData.map((item, idx) => (
-              <div
+              <Link
                 key={`${item.id}-${idx}`}
-                className="flex-shrink-0 w-[270px] sm:w-[290px] md:w-[calc(33.333%-14px)] lg:w-[calc(20%-16px)] snap-start group/card cursor-pointer"
+                href={`/trip/${item.slug}`}
+                className="flex-shrink-0 w-[270px] sm:w-[290px] md:w-[calc(33.333%-14px)] lg:w-[calc(20%-16px)] snap-start group/card cursor-pointer block"
               >
                 {/* Card Image Container (Height ≈ 328px, Ratio ≈ 0.95, clean square corners) */}
                 <div className="relative overflow-hidden w-full h-[260px] sm:h-[180px] lg:h-[300px] shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100 rounded-none">
@@ -276,7 +250,10 @@ export default function AdventuresSection({
 
                   {/* Top-Right Circular Favorite Button */}
                   <button
-                    onClick={(e) => toggleFavorite(`${item.id}-${idx}`, e)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleFavorite(`${item.id}-${idx}`, e);
+                    }}
                     aria-label="Add to wishlist"
                     className="bg-white rounded-full w-7 h-7 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
                   >
@@ -345,7 +322,7 @@ export default function AdventuresSection({
                     )}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

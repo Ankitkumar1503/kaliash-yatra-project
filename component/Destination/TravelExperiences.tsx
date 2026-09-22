@@ -54,6 +54,8 @@ const experiencesList: TravelExperienceItem[] = [
   },
 ];
 
+import Link from "next/link";
+
 export default function TravelExperiences() {
   return (
     <section className="w-full bg-[#f9fafb] py-12 sm:py-16 md:py-20 border-y border-gray-100">
@@ -73,9 +75,10 @@ export default function TravelExperiences() {
         {/* 5 Columns Row */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 text-center">
           {experiencesList.map((item) => (
-            <div
+            <Link
               key={item.id}
-              className="flex flex-col items-center group cursor-pointer"
+              href="/activities"
+              className="flex flex-col items-center group cursor-pointer block"
             >
               {/* Circular Pale-Orange Icon Container */}
               <div className="w-13 h-13 sm:w-15 sm:h-15 rounded-full bg-[#fdeee9] text-[#F26522] flex items-center justify-center mb-3 sm:mb-3.5 shadow-2xs group-hover:bg-[#F26522] group-hover:text-white group-hover:scale-105 transition-all duration-200">
@@ -91,7 +94,7 @@ export default function TravelExperiences() {
               <p className="text-gray-500 text-xs sm:text-[13px] leading-relaxed max-w-[170px]">
                 {item.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

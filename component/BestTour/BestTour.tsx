@@ -20,6 +20,7 @@ const playfair = Playfair_Display({
 
 export interface Tour {
   id: string;
+  slug: string;
   image: string;
   badge: string;
   title: string;
@@ -33,58 +34,63 @@ export interface Tour {
 const tourData: Tour[] = [
   {
     id: "1",
-    image: "/images/tours/tour-1.jpg",
-    badge: "BREAKFAST",
-    title: "The Montcalm At Brewery London City",
-    location: "Westminster Borough, London",
-    rating: 4.8,
+    slug: "everest-base-camp-trek",
+    image: "/images/tours/tour-3.jpg",
+    badge: "BESTSELLER",
+    title: "Everest Base Camp Legendary Trek",
+    location: "Khumbu Region, Nepal",
+    rating: 5.0,
     reviewText: "Exceptional",
     reviewCount: "3,014",
-    price: "$89.00",
+    price: "$1,450.00",
   },
   {
     id: "2",
-    image: "/images/tours/tour-2.jpg",
-    badge: "BREAKFAST",
-    title: "Paris Eiffel Luxury Romance Tour",
-    location: "7th Arrondissement, Paris",
+    slug: "mount-kailash-mansarovar-yatra",
+    image: "/images/destinations/mount-kailash.jpg",
+    badge: "SACRED",
+    title: "Mount Kailash & Mansarovar Yatra",
+    location: "Ngari Prefecture, Tibet",
     rating: 4.9,
     reviewText: "Exceptional",
     reviewCount: "2,450",
-    price: "$120.00",
+    price: "$2,850.00",
   },
   {
     id: "3",
-    image: "/images/tours/tour-3.jpg",
-    badge: "BREAKFAST",
-    title: "Kathmandu & Everest Scenic Heritage",
-    location: "Durbar Square, Kathmandu",
+    slug: "annapurna-circuit-trek",
+    image: "/images/destinations/annapurna.jpg",
+    badge: "CLASSIC",
+    title: "Annapurna Circuit & Thorong La Pass",
+    location: "Annapurna Sanctuary, Nepal",
     rating: 4.9,
     reviewText: "Exceptional",
     reviewCount: "1,890",
-    price: "$95.00",
+    price: "$1,250.00",
   },
   {
     id: "4",
-    image: "/images/tours/tour-4.jpg",
-    badge: "BREAKFAST",
-    title: "Bali Oceanfront Resort & Spa Getaway",
-    location: "Nusa Dua, Bali",
-    rating: 4.7,
+    slug: "bhutan-cultural-odyssey",
+    image: "/images/gallery/gallery-2.jpg",
+    badge: "EXCLUSIVE",
+    title: "Bhutan Cultural Odyssey & Tiger's Nest",
+    location: "Paro & Thimphu, Bhutan",
+    rating: 4.8,
     reviewText: "Exceptional",
-    reviewCount: "4,120",
-    price: "$110.00",
+    reviewCount: "1,120",
+    price: "$1,980.00",
   },
   {
     id: "5",
+    slug: "everest-base-camp-trek",
     image: "/images/tours/tour-5.jpg",
-    badge: "BREAKFAST",
-    title: "Swiss Alps Alpine Village Expedition",
-    location: "Grindelwald, Switzerland",
+    badge: "SCENIC",
+    title: "Gokyo Lakes & Everest Base Camp",
+    location: "Sagarmatha, Nepal",
     rating: 5.0,
     reviewText: "Exceptional",
     reviewCount: "1,560",
-    price: "$145.00",
+    price: "$1,650.00",
   },
 ];
 
@@ -128,7 +134,7 @@ export default function BestTour() {
 
           {/* Right side: View all Tour button */}
           <Link
-            href="/tours"
+            href="/destination"
             className="border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-black text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 rounded-md transition-colors flex items-center space-x-1.5 shadow-2xs group"
           >
             <span>View all Tour</span>
@@ -156,9 +162,10 @@ export default function BestTour() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {tourData.map((tour) => (
-              <div
+              <Link
                 key={tour.id}
-                className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[290px] lg:w-[calc(20%-19.2px)] snap-start group/card cursor-pointer"
+                href={`/trip/${tour.slug}`}
+                className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[290px] lg:w-[calc(20%-19.2px)] snap-start group/card cursor-pointer block"
               >
                 {/* Card Image Container */}
                 <div className="relative overflow-hidden aspect-square w-full shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100">
@@ -177,7 +184,10 @@ export default function BestTour() {
 
                   {/* Top-Right Wishlist Heart Button */}
                   <button
-                    onClick={(e) => toggleFavorite(tour.id, e)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleFavorite(tour.id, e);
+                    }}
                     aria-label="Add to wishlist"
                     className="bg-white rounded-full p-2 absolute top-3 right-3 z-10 shadow-md hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
                   >
@@ -229,7 +239,7 @@ export default function BestTour() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

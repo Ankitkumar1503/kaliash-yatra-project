@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Anton } from "next/font/google";
+import { saveNewsletterEmail } from "@/lib/storage";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function NewsletterSubscription() {
       return;
     }
 
+    saveNewsletterEmail(email.trim());
     setStatus("success");
     setMessage("Thanks for subscribing!");
     setTimeout(() => {

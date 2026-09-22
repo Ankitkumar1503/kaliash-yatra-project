@@ -1,14 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReviewCard from "./ReviewCard";
 import WriteReviewForm from "./WriteReviewForm";
 import { initialReviews, ReviewItem } from "./reviewsData";
+import { getStoredReviews, saveStoredReview } from "@/lib/storage";
 
 export default function ReviewsSection() {
   const [reviews, setReviews] = useState<ReviewItem[]>(initialReviews);
 
+  useEffect(() => {
+    // Read from client storage on mount to safely merge with any previous client reviews
+    const stored = getStoredReviews();
+    if (stored && stored.length > 0) {
+      setReviews(stored);
+    }
+  }, []);
+
   const handleAddReview = (newReview: ReviewItem) => {
+    saveStoredReview(newReview);
     setReviews((prev) => [newReview, ...prev]);
   };
 

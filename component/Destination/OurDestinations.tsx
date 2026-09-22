@@ -72,7 +72,7 @@ export default function OurDestinations({
   items,
   rightLinkVariant = "arrows",
   rightLinkText = "View all Tour",
-  rightLinkHref = "/tours",
+  rightLinkHref = "/destination",
   className = "",
 }: OurDestinationsProps = {}) {
   const scrollRef = useRef<HTMLDivElement>(null);

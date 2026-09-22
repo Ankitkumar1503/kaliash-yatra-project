@@ -49,6 +49,7 @@ interface UnforgettableExperiencesProps {
   heading?: string;
   paragraphs?: string[];
   highlights?: ExperienceHighlight[];
+  experiences?: Array<{ title: string; description: string; icon?: string }>;
   image?: string;
   className?: string;
 }
@@ -60,10 +61,20 @@ export default function UnforgettableExperiences({
     "The Everest region, also known as the Khumbu region, is one of the world's most iconic mountain destinations. It features Mount Everest (8,848.86 m), charming Sherpa villages, historic monasteries and breathtaking Himalayan scenery.",
     "Whether you're here for trekking, cultural exploration or simply to witness the world's highest mountains, the Everest region promises an authentic, memorable journey filled with unforgettable landscape encounters and experiences.",
   ],
-  highlights = defaultHighlights,
+  highlights,
+  experiences,
   image = "/images/destinations/everest.jpg",
   className = "",
 }: UnforgettableExperiencesProps) {
+  const displayHighlights =
+    experiences && experiences.length > 0
+      ? experiences.map((exp, idx) => ({
+          id: `exp-${idx}`,
+          title: exp.title,
+          description: exp.description,
+          icon: defaultHighlights[idx % defaultHighlights.length].icon,
+        }))
+      : highlights || defaultHighlights;
   return (
     <section
       className={`w-full bg-white py-8 sm:py-10 lg:py-12 px-4 sm:px-5 lg:px-6 xl:px-8 ${className}`}
@@ -103,7 +114,7 @@ export default function UnforgettableExperiences({
 
             {/* 2x2 Highlights Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-1">
-              {highlights.map((item) => (
+              {displayHighlights.map((item) => (
                 <div key={item.id} className="flex items-start gap-3 sm:gap-3.5">
                   {/* Circular Pale-Orange Icon */}
                   <div className="w-10 h-10 rounded-full bg-[#fdeee9] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">

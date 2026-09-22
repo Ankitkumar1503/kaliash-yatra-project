@@ -30,11 +30,12 @@ export default function BlogPage() {
           description="Discover travel tips, destination guides, cultural insights and real stories from the Himalayas and beyond."
         />
 
-        {/* 3. Main Blog Listing Section (4 columns across 5 rows) */}
+        {/* 3. Main Blog Listing Section (4 columns across 5 rows) with interactive search & filter */}
         <TravelTips
           eyebrow="Modern & Beautiful"
           title="STAY UPDATE WITH GOTRAVEL TIPS"
           posts={allBlogPosts}
+          showSearchFilter={true}
         />
 
         {/* 4. Shared Newsletter Subscription */}

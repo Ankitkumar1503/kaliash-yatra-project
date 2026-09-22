@@ -10,36 +10,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-interface FooterLink {
-  label: string;
-  href: string;
-}
-
-const companyLinks: FooterLink[] = [
-  { label: "About Us", href: "/about-us" },
-  { label: "Careers", href: "/careers" },
-  { label: "Blog", href: "/blog" },
-  { label: "Press", href: "/press" },
-  { label: "Gift Cards", href: "/gift-cards" },
-  { label: "Magazine", href: "/magazine" },
-];
-
-const supportLinks: FooterLink[] = [
-  { label: "Contact", href: "/contact" },
-  { label: "Legal Notice", href: "/legal-documents" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms and Conditions", href: "/terms" },
-  { label: "Sitemap", href: "/sitemap" },
-];
-
-const otherServicesLinks: FooterLink[] = [
-  { label: "Activity Finder", href: "/activity-finder" },
-  { label: "Tour List", href: "/destination" },
-  { label: "Flight finder", href: "/flights" },
-  { label: "Cruise Ticket", href: "/cruise" },
-  { label: "Holiday Rental", href: "/rentals" },
-  { label: "Travel Agents", href: "/agents" },
-];
+import { footerLinks } from "@/data/navigation";
 
 export default function Footer() {
   return (
@@ -102,7 +73,7 @@ export default function Footer() {
               OUR COMPANY
             </h3>
             <ul className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-[13px]">
-              {companyLinks.map((link) => (
+              {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -121,7 +92,7 @@ export default function Footer() {
               SUPPORT
             </h3>
             <ul className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-[13px]">
-              {supportLinks.map((link) => (
+              {footerLinks.support.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -140,7 +111,7 @@ export default function Footer() {
               OTHER SERVICES
             </h3>
             <ul className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-[13px]">
-              {otherServicesLinks.map((link) => (
+              {footerLinks.otherServices.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -165,19 +136,19 @@ export default function Footer() {
             </span>
             <div className="flex items-center space-x-3 sm:space-x-4 text-gray-600 font-medium">
               <Link
-                href="/privacy"
+                href="/legal-documents"
                 className="hover:text-[#F26522] transition-colors"
               >
                 Privacy
               </Link>
               <Link
-                href="/terms"
+                href="/legal-documents"
                 className="hover:text-[#F26522] transition-colors"
               >
                 Terms
               </Link>
               <Link
-                href="/sitemap"
+                href="/destination"
                 className="hover:text-[#F26522] transition-colors"
               >
                 Site Map

@@ -1,0 +1,163 @@
+import { Region } from "./types";
+
+export const regionsData: Record<string, Region> = {
+  everest: {
+    id: "everest",
+    slug: "everest",
+    title: "EVEREST REGION",
+    subtitle: "HOME OF THE WORLD'S HIGHEST PEAK",
+    tagline:
+      "Home to the world's highest peak, the Everest region offers breathtaking landscapes, Sherpa culture and once-in-a-lifetime experiences.",
+    heroImage: "/images/destinations/everest.jpg",
+    aboutTitle: "About the Everest Region",
+    aboutParagraphs: [
+      "The Everest region, known locally as the Khumbu, is one of the most iconic trekking destinations in the world. Dominated by Mount Everest (8,848.86 m), this mountainous wonderland is also home to three other 8,000-meter giants: Lhotse, Makalu, and Cho Oyu.",
+      "Beyond the soaring granite peaks, the region is shaped by the warmth and hospitality of the Sherpa people, ancient Buddhist monasteries adorned with colorful prayer flags, and vibrant mountain settlements like Namche Bazaar.",
+      "Whether you are undertaking the legendary trek to Everest Base Camp, crossing high alpine passes like Cho La, or marveling at the emerald glacial waters of Gokyo Lakes, the Khumbu provides a life-changing Himalayan experience.",
+    ],
+    stats: [
+      { value: "8,849m", label: "Highest Peak" },
+      { value: "1,148 km²", label: "National Park Area" },
+      { value: "4", label: "8,000m+ Peaks" },
+      { value: "12+", label: "Historic Monasteries" },
+      { value: "1979", label: "UNESCO World Heritage Year" },
+    ],
+    popularPlaces: [
+      {
+        id: "namche-bazaar",
+        name: "Namche Bazaar",
+        description: "Vibrant Sherpa Gateway",
+        image: "/images/gallery/gallery-3.jpg",
+        href: "/trip/everest-base-camp-trek",
+      },
+      {
+        id: "tengboche",
+        name: "Tengboche Monastery",
+        description: "Spiritual Heart of Khumbu",
+        image: "/images/gallery/gallery-4.jpg",
+        href: "/trip/everest-base-camp-trek",
+      },
+      {
+        id: "gokyo-lakes",
+        name: "Gokyo Lakes",
+        description: "Emerald Glacial Waters",
+        image: "/images/blogs/blog-gotravel-1.jpg",
+        href: "/trip/everest-base-camp-trek",
+      },
+      {
+        id: "kala-patthar",
+        name: "Kala Patthar (5,545m)",
+        description: "Best Sunrise Over Everest",
+        image: "/images/tours/tour-4.jpg",
+        href: "/trip/everest-base-camp-trek",
+      },
+      {
+        id: "everest-base-camp",
+        name: "Everest Base Camp",
+        description: "Foot of the World's Highest",
+        image: "/images/tours/tour-5.jpg",
+        href: "/trip/everest-base-camp-trek",
+      },
+    ],
+    experiences: [
+      {
+        id: "exp-1",
+        title: "Tengboche Monastery Morning Puja",
+        description: "Join resident Buddhist monks in dawn chants surrounded by prayer flags and panoramic views of Ama Dablam.",
+        image: "/images/gallery/gallery-1.jpg",
+        badge: "CULTURAL",
+      },
+      {
+        id: "exp-2",
+        title: "Kala Patthar Sunrise Vista",
+        description: "Ascend to 5,545 meters in the crisp early morning to watch the golden sun crest directly over Everest and Lhotse.",
+        image: "/images/expeditions/expedition-4.jpg",
+        badge: "MOUNTAIN",
+      },
+      {
+        id: "exp-3",
+        title: "Sherpa Teahouse Hospitality",
+        description: "Experience genuine mountain warmth, savor hearty Dal Bhat and hot ginger lemon tea around warm bukhari stoves.",
+        image: "/images/adventures/adv-1.jpg",
+        badge: "LOCAL LIFE",
+      },
+      {
+        id: "exp-4",
+        title: "Hillary Suspension Bridges",
+        description: "Cross exhilarating suspension bridges draped in colorful Buddhist katas over roaring glacial canyon torrents.",
+        image: "/images/tours/tour-2.jpg",
+        badge: "SCENIC",
+      },
+    ],
+    featuredTrips: ["everest-base-camp-trek"],
+  },
+  annapurna: {
+    id: "annapurna",
+    slug: "annapurna",
+    title: "ANNAPURNA REGION",
+    subtitle: "DIVERSE LANDSCAPES & HIGH ALPINE PASSES",
+    tagline:
+      "From subtropical rhododendron forests to the high arid Tibetan plateau over Thorong La Pass, Annapurna is Nepal's most diverse trekking region.",
+    heroImage: "/images/destinations/pokhara.jpg",
+    aboutTitle: "About the Annapurna Region",
+    aboutParagraphs: [
+      "The Annapurna region encompasses a stunning array of ecosystems and climates, ranging from lush green valleys, terraced rice paddies, and mossy pine forests to barren high-altitude deserts reminiscent of Tibet.",
+      "The region is renowned for the classic Annapurna Circuit, the dramatic natural amphitheater of Annapurna Sanctuary, and the iconic sunrise viewpoint from Poon Hill overlooking Dhaulagiri and Machhapuchhre (Fishtail Mountain).",
+      "Rich with the cultures of Gurung, Magar, and Thakali communities, Annapurna offers world-class trekking infrastructure with welcoming mountain lodges.",
+    ],
+    stats: [
+      { value: "8,091m", label: "Annapurna I Peak" },
+      { value: "5,416m", label: "Thorong La Pass" },
+      { value: "7,629 km²", label: "Conservation Area" },
+      { value: "100+", label: "Bird & Mammal Species" },
+      { value: "45,000+", label: "Trekkers Annually" },
+    ],
+    popularPlaces: [
+      {
+        id: "poon-hill",
+        name: "Poon Hill (3,210m)",
+        description: "Golden Himalayan Sunrise",
+        image: "/images/blogs/blog-gotravel-2.jpg",
+        href: "/trip/annapurna-circuit-trek",
+      },
+      {
+        id: "thorong-la",
+        name: "Thorong La Pass",
+        description: "World's Widest Pass",
+        image: "/images/blogs/blog-gotravel-4.jpg",
+        href: "/trip/annapurna-circuit-trek",
+      },
+      {
+        id: "muktinath",
+        name: "Muktinath Temple",
+        description: "Sacred Hindu & Buddhist Shrine",
+        image: "/images/gallery/gallery-2.jpg",
+        href: "/trip/annapurna-circuit-trek",
+      },
+      {
+        id: "ghandruk",
+        name: "Ghandruk Village",
+        description: "Historic Gurung Heritage",
+        image: "/images/adventures/adv-2.jpg",
+        href: "/trip/annapurna-circuit-trek",
+      },
+    ],
+    experiences: [
+      {
+        id: "exp-ann-1",
+        title: "Sunrise at Poon Hill",
+        description: "Watch dawn transform the Annapurna and Dhaulagiri mountain wall from deep violet into fiery gold.",
+        image: "/images/gallery/gallery-5.jpg",
+        badge: "PANORAMA",
+      },
+      {
+        id: "exp-ann-2",
+        title: "Crossing Thorong La Pass",
+        description: "Achieve the unforgettable milestone of traversing the legendary 5,416-meter pass between Manang and Mustang.",
+        image: "/images/expeditions/expedition-3.jpg",
+        badge: "EPIC TREK",
+      },
+    ],
+    featuredTrips: ["annapurna-circuit-trek"],
+  },
+};
