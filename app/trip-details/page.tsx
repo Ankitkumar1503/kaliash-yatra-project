@@ -88,7 +88,7 @@ export default function TripDetailsPage() {
           maxAltitude="5,545 m"
           checkAvailabilityHref="#itinerary"
           downloadItineraryHref="#"
-          planTripHref="/contact"
+          planTripHref="/plan-my-trip"
         />
 
         {/* 4. Trip Navigation Tabs (Pill style with smooth scrolling) */}

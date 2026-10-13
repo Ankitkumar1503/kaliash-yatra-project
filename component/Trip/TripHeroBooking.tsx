@@ -40,7 +40,7 @@ export default function TripHeroBooking({
   maxAltitude = "5,545 m",
   checkAvailabilityHref = "#dates-price",
   downloadItineraryHref = "#",
-  planTripHref = "/contact",
+  planTripHref = "/plan-my-trip",
   className = "",
 }: TripHeroBookingProps) {
   const allImages = Array.from(new Set([image, ...(gallery || [])].filter(Boolean))) as string[];

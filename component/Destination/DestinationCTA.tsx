@@ -49,7 +49,7 @@ export default function DestinationCTA() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/plan-my-trip"
               className="bg-[#F26522] hover:bg-[#d85417] text-white font-semibold text-xs sm:text-sm px-6 py-3 uppercase tracking-wider rounded-none shadow-2xs hover:shadow-xs transition-colors text-center"
             >
               BOOK YOUR CUSTOM TRIP NOW

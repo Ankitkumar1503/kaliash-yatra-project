@@ -113,7 +113,7 @@ export default async function DynamicTripPage({
               maxAltitude={trip.maxAltitude}
               checkAvailabilityHref="#itinerary"
               downloadItineraryHref="#inclusions"
-              planTripHref="/reviews"
+              planTripHref="/plan-my-trip"
             />
             <TripNavTabs />
             <TripAboutAndHighlights

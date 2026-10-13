@@ -126,7 +126,7 @@ export default function Header() {
           {/* Right: Plan Your Trip Button (Aligned to the right edge) */}
           <div className="hidden lg:flex items-center shrink-0">
             <Link
-              href="/destination"
+              href="/plan-my-trip"
               className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-[13px] px-4 sm:px-5 py-2 shadow-xs hover:shadow-md transition-all duration-200 whitespace-nowrap inline-flex items-center justify-center cursor-pointer"
             >
               Plan Your Trip
@@ -136,7 +136,7 @@ export default function Header() {
           {/* Mobile Right: CTA Button + Hamburger Menu Toggle */}
           <div className="flex lg:hidden items-center space-x-2 sm:space-x-3 shrink-0">
             <Link
-              href="/destination"
+              href="/plan-my-trip"
               className="bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-[11px] sm:text-xs px-2.5 sm:px-3 py-1.5 shadow-xs transition-colors whitespace-nowrap inline-flex items-center justify-center"
             >
               Plan Your Trip
@@ -174,7 +174,7 @@ export default function Header() {
           </nav>
 
           <Link
-            href="/destination"
+            href="/plan-my-trip"
             onClick={() => setIsMenuOpen(false)}
             className="block w-full text-center bg-[#F26522] hover:bg-[#d8480b] text-white font-medium text-xs sm:text-[13px] px-4 py-2 shadow-xs transition-colors mb-4"
           >

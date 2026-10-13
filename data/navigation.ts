@@ -29,6 +29,7 @@ export const footerSupportLinks: FooterLink[] = [
 
 export const footerServicesLinks: FooterLink[] = [
   { label: "Activity Finder", href: "/activities" },
+  { label: "Plan My Trip", href: "/plan-my-trip" },
   { label: "Tour List", href: "/destination" },
   { label: "Everest Trek", href: "/trip/everest-base-camp-trek" },
   { label: "Kailash Yatra", href: "/trip/mount-kailash-mansarovar-yatra" },
