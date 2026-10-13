@@ -9,7 +9,7 @@ import { FaRegClock, FaSearch } from "react-icons/fa";
 const lora = Lora({
   subsets: ["latin"],
   style: ["italic", "normal"],
-  weight: ["400", "500"],
+  display: "swap",
 });
 
 const anton = Anton({
@@ -87,7 +87,7 @@ export default function TravelTips({
       list = list.filter(
         (p) =>
           p.title.toLowerCase().includes(q) ||
-          p.dateAuthor.toLowerCase().includes(q)
+          p.dateAuthor.toLowerCase().includes(q),
       );
     }
 
@@ -95,10 +95,30 @@ export default function TravelTips({
       const cat = activeCategory.toLowerCase();
       list = list.filter((p) => {
         const titleLower = p.title.toLowerCase();
-        if (cat === "trekking") return titleLower.includes("trek") || titleLower.includes("base camp") || titleLower.includes("altitude");
-        if (cat === "pilgrimage") return titleLower.includes("kailash") || titleLower.includes("yatra") || titleLower.includes("mansarovar");
-        if (cat === "guides") return titleLower.includes("guide") || titleLower.includes("time") || titleLower.includes("countries");
-        if (cat === "culture") return titleLower.includes("monasteries") || titleLower.includes("bhutan") || titleLower.includes("temple");
+        if (cat === "trekking")
+          return (
+            titleLower.includes("trek") ||
+            titleLower.includes("base camp") ||
+            titleLower.includes("altitude")
+          );
+        if (cat === "pilgrimage")
+          return (
+            titleLower.includes("kailash") ||
+            titleLower.includes("yatra") ||
+            titleLower.includes("mansarovar")
+          );
+        if (cat === "guides")
+          return (
+            titleLower.includes("guide") ||
+            titleLower.includes("time") ||
+            titleLower.includes("countries")
+          );
+        if (cat === "culture")
+          return (
+            titleLower.includes("monasteries") ||
+            titleLower.includes("bhutan") ||
+            titleLower.includes("temple")
+          );
         return true;
       });
     }
@@ -147,26 +167,30 @@ export default function TravelTips({
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2">
-              {["All", "Trekking", "Pilgrimage", "Guides", "Culture"].map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
-                    activeCategory === cat
-                      ? "bg-[#F26522] text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+              {["All", "Trekking", "Pilgrimage", "Guides", "Culture"].map(
+                (cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActiveCategory(cat)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                      activeCategory === cat
+                        ? "bg-[#F26522] text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ),
+              )}
             </div>
           </div>
         )}
 
         {loadError ? (
-          <div className="text-center py-12 text-gray-500 text-sm" role="alert">{loadError}</div>
+          <div className="text-center py-12 text-gray-500 text-sm" role="alert">
+            {loadError}
+          </div>
         ) : filteredPosts.length === 0 ? (
           <div className="text-center py-12 text-gray-500 text-sm">
             No travel articles found matching &quot;{searchQuery}&quot;.
@@ -175,35 +199,35 @@ export default function TravelTips({
           /* 4-Column Blog Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 lg:gap-x-6 xl:gap-x-7 gap-y-7 sm:gap-y-8 lg:gap-y-9">
             {filteredPosts.map((post) => (
-            <Link
-              key={post.id}
-              href={post.href}
-              className="flex flex-col group cursor-pointer"
-            >
-              {/* Image Container */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden mb-3 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+              <Link
+                key={post.id}
+                href={post.href}
+                className="flex flex-col group cursor-pointer"
+              >
+                {/* Image Container */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden mb-3 shadow-2xs group-hover:shadow-md transition-shadow bg-gray-100">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Title */}
-              <h3 className="font-semibold text-black text-sm sm:text-[15px] leading-snug line-clamp-2 group-hover:text-[#F26522] transition-colors">
-                {post.title}
-              </h3>
+                {/* Title */}
+                <h3 className="font-semibold text-black text-sm sm:text-[15px] leading-snug line-clamp-2 group-hover:text-[#F26522] transition-colors">
+                  {post.title}
+                </h3>
 
-              {/* Meta Row */}
-              <div className="flex items-center space-x-2 text-gray-500 text-[11px] sm:text-xs mt-1.5 font-normal">
-                <FaRegClock className="text-gray-400 text-xs" />
-                <span>{post.dateAuthor}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                {/* Meta Row */}
+                <div className="flex items-center space-x-2 text-gray-500 text-[11px] sm:text-xs mt-1.5 font-normal">
+                  <FaRegClock className="text-gray-400 text-xs" />
+                  <span>{post.dateAuthor}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         )}
       </div>
     </section>
