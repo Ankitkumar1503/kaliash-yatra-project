@@ -98,11 +98,12 @@ export type UiTrip = Trip & {
     rating: number;
   }>;
 };
-export const resolveMediaUrl = (media: Media | string | undefined | null): string => {
-  if (!media) return "";
+export const resolveMediaUrl = (media: Media | string | undefined | null, fallback = ""): string => {
+  if (!media) return fallback;
   const rawUrl = typeof media === "string" ? media : (media as any)?.url || "";
-  if (!rawUrl || typeof rawUrl !== "string") return "";
+  if (!rawUrl || typeof rawUrl !== "string") return fallback;
   const trimmed = rawUrl.trim();
+  if (!trimmed) return fallback;
   
   // If it's an absolute localhost:5000/uploads URL, normalize to relative /uploads so Next.js handles it locally
   const localMatch = trimmed.match(/^https?:\/\/(?:localhost|127\.0\.0\.1):5000(\/(?:uploads|images)\/.*)$/);

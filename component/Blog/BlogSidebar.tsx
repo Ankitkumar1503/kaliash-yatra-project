@@ -72,13 +72,7 @@ export default function BlogSidebar({
             >
               {/* Thumbnail Image */}
               <div className="relative w-16 h-12 sm:w-[72px] sm:h-[52px] shrink-0 overflow-hidden bg-gray-100 rounded-2xs">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  sizes="72px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                <SidebarThumbImage src={article.image} alt={article.title} />
               </div>
 
               {/* Title & Date */}
@@ -95,5 +89,22 @@ export default function BlogSidebar({
         </div>
       </div>
     </aside>
+  );
+}
+
+
+function SidebarThumbImage({ src, alt }: { src: string; alt: string }) {
+  const defaultSrc = "/images/blogs/blog-1.jpg";
+  const [imgSrc, setImgSrc] = useState(src || defaultSrc);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      sizes="72px"
+      className="object-cover group-hover:scale-105 transition-transform duration-300"
+      onError={() => setImgSrc(defaultSrc)}
+    />
   );
 }

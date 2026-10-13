@@ -233,3 +233,20 @@ export default function TravelTips({
     </section>
   );
 }
+
+
+function TravelTipCardImage({ src, alt }: { src: string; alt: string }) {
+  const defaultSrc = "/images/blogs/blog-1.jpg";
+  const [imgSrc, setImgSrc] = useState(src || defaultSrc);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      className="object-cover group-hover:scale-105 transition-transform duration-500"
+      onError={() => setImgSrc(defaultSrc)}
+    />
+  );
+}
