@@ -14,7 +14,7 @@ const anton = Anton({
 });
 
 export interface FAQItem {
-  id: string;
+  id?: string | number;
   question: string;
   answer: string;
 }
@@ -58,15 +58,32 @@ const faqsData: FAQItem[] = [
   },
 ];
 
-export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export interface FAQSectionProps {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items?: FAQItem[];
+  className?: string;
+  id?: string;
+}
+
+export default function FAQSection({
+  eyebrow = "TRAVEL INFORMATION",
+  title = "FREQUENTLY ASKED QUESTIONS",
+  description = "Find answers to the most common questions about travelling with us.",
+  items,
+  className = "",
+  id = "faqs",
+}: FAQSectionProps = {}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const displayFaqs = items && items.length > 0 ? items : faqsData;
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="w-full bg-white py-12 sm:py-14 md:py-16">
+    <section id={id} className={`w-full bg-white py-10 sm:py-12 md:py-14 ${className}`}>
       <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Heading and description */}
@@ -74,26 +91,25 @@ export default function FAQSection() {
             <span
               className={`${lora.className} text-gray-500 text-xs sm:text-[13px] tracking-[0.18em] uppercase block mb-2 font-normal`}
             >
-              TRAVEL INFORMATION
+              {eyebrow}
             </span>
             <h2
               className={`${anton.className} text-2xl sm:text-3xl md:text-4xl lg:text-[36px] uppercase tracking-tight text-black leading-[1.08] mb-3`}
             >
-              FREQUENTLY ASKED
-              <br className="hidden sm:inline" /> QUESTIONS
+              {title}
             </h2>
             <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Find answers to the most common questions about travelling with us.
+              {description}
             </p>
           </div>
 
           {/* Right Column: FAQ Accordion with clean gray cards */}
           <div className="lg:col-span-8 xl:col-span-8 space-y-2.5 sm:space-y-3">
-            {faqsData.map((faq, index) => {
+            {displayFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
                 <div
-                  key={faq.id}
+                  key={faq.id || index}
                   className="bg-[#F8F8F8] rounded-[3px] transition-colors overflow-hidden"
                 >
                   <button

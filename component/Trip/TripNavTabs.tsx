@@ -11,9 +11,11 @@ export interface TabItem {
 const defaultTabs: TabItem[] = [
   { id: "overview", label: "Overview", targetId: "overview" },
   { id: "itinerary", label: "Itinerary", targetId: "itinerary" },
+  { id: "elevation", label: "Elevation", targetId: "elevation-profile" },
+  { id: "map", label: "Route Map", targetId: "route-map" },
   { id: "inclusions", label: "Inclusions", targetId: "inclusions" },
   { id: "exclusions", label: "Exclusions", targetId: "exclusions" },
-  { id: "dates-price", label: "Dates & Price", targetId: "dates-price" },
+  { id: "dates-price", label: "Dates & Price", targetId: "departures" },
   { id: "useful-info", label: "Useful Info", targetId: "useful-info" },
   { id: "faqs", label: "FAQs", targetId: "faqs" },
   { id: "reviews", label: "Reviews", targetId: "reviews" },

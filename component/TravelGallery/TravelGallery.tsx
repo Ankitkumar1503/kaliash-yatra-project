@@ -48,7 +48,8 @@ const galleryData: GalleryItem[] = [
   },
 ];
 
-export default function TravelGallery() {
+export default function TravelGallery({ items, loadError }: { items?: GalleryItem[]; loadError?: string } = {}) {
+  const displayItems = items === undefined ? galleryData : items;
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-14">
       {/* Centered Header */}
@@ -66,9 +67,9 @@ export default function TravelGallery() {
       </div>
 
       {/* Contained 5-Image Gallery Grid */}
-      <div>
+      {loadError ? <p className="site-container py-8 text-center text-gray-600 text-sm" role="alert">{loadError}</p> : displayItems.length === 0 ? <p className="site-container py-8 text-center text-gray-600 text-sm">No gallery images are available right now.</p> : <div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 items-center">
-          {galleryData.map((item) => (
+          {displayItems.map((item) => (
             <div
               key={item.id}
               className={`relative w-full aspect-square md:aspect-auto ${item.heightClass} overflow-hidden group cursor-pointer bg-gray-100`}
@@ -85,7 +86,7 @@ export default function TravelGallery() {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
     </section>
   );
 }

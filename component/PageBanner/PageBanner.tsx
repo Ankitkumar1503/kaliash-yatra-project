@@ -37,7 +37,8 @@ export default function PageBanner({
     >
       {/* Background Image */}
       <Image
-        src={backgroundImage}
+        unoptimized
+        src={backgroundImage || "/images/destinations/everest.jpg"}
         alt={title}
         fill
         priority

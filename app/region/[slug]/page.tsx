@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Header from "@/component/Header/Header";
 import PageBanner from "@/component/PageBanner/PageBanner";
 import AboutRegion from "@/component/Region/AboutRegion";
@@ -9,88 +10,36 @@ import RegionAtAGlance from "@/component/Region/RegionAtAGlance";
 import UnforgettableExperiences from "@/component/Region/UnforgettableExperiences";
 import NewsletterSubscription from "@/component/NewsletterSubscription/NewsletterSubscription";
 import Footer from "@/component/Footer/Footer";
-import { regionsData } from "@/data/regions";
+import { ApiRequestError } from "@/lib/api/client";
+import { getRegion } from "@/lib/api/regions";
 
-type Props = {
-  params: Promise<{ slug: string }> | { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams?.slug || "everest";
-  const region = regionsData[slug] || regionsData["everest"];
-
-  return {
-    title: `${region.title} - Mission Nepal Holiday`,
-    description: region.tagline,
-  };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  try { const region = await getRegion(slug); if (!region) notFound(); return { title: `${region.title} - Mission Nepal Holiday`, description: region.tagline }; }
+  catch (error) { if (error instanceof Error && "status" in error && error.status === 404) notFound(); return { title: `${slug} - Mission Nepal Holiday`, description: "Explore this region with Mission Nepal Holiday." }; }
 }
 
-export default async function DynamicRegionPage({ params }: Props) {
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams?.slug || "everest";
-  const region = regionsData[slug] || regionsData["everest"];
-
+export default async function DynamicRegionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  let region; let loadError: unknown;
+  try { region = await getRegion(slug); } catch (error) { loadError = error; }
+  if (!loadError && !region) notFound();
+  const featuredTrip = region?.featuredTrips[0];
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white">
-      {/* 1. Shared Header */}
       <Header />
-
       <main className="flex-grow w-full">
-        {/* 2. Reusable PageBanner */}
-        <PageBanner
-          backgroundImage={region.heroImage}
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "Region", href: "/destination" },
-            { label: region.title },
-          ]}
-          title={region.title}
-          description={region.tagline}
-        />
-
-        {/* 3. About the Region (40/60 Split Layout) */}
-        <AboutRegion
-          heading={region.aboutTitle}
-          paragraphs={region.aboutParagraphs}
-          image={region.heroImage}
-          ctaHref={`/trip/${region.featuredTrips[0] || "everest-base-camp-trek"}`}
-        />
-
-        {/* 4. Region Stats Strip (4-column gray stats) */}
-        <RegionStats />
-
-        {/* 5. Popular Places in Region */}
-        <OurDestinations
-          eyebrow="DESTINATIONS"
-          title={`Popular Places in ${region.title.replace(" REGION", "")}`}
-          items={region.popularPlaces}
-          className="!py-8 sm:!py-10 lg:!py-12"
-        />
-
-        {/* 6. Featured Tours in this Region */}
-        <AdventuresSection
-          eyebrow={`POPULAR TREKS IN ${region.title}`}
-          title="Featured Tours"
-          titleFont="playfair"
-          headerLayout="split"
-          viewAllHref="/destination"
-          rightLinkVariant="button"
-          rightLinkText="View all Tours"
-          className="!py-8 sm:!py-10 lg:!py-12"
-        />
-
-        {/* 7. Region At A Glance (5 Key Highlights) */}
-        <RegionAtAGlance />
-
-        {/* 8. Unforgettable Experiences */}
-        <UnforgettableExperiences experiences={region.experiences} />
-
-        {/* 9. Newsletter Subscription */}
-        <NewsletterSubscription />
+        {loadError || !region ? <section className="site-container py-16 text-center text-gray-600" role="alert">{loadError instanceof ApiRequestError ? loadError.message : "Unable to load region content right now."}</section> : <>
+          <PageBanner backgroundImage={region.heroImage} breadcrumbs={[{ label: "Home", href: "/" }, { label: "Region", href: "/region" }, { label: region.title }]} title={region.title} description={region.tagline} />
+          <AboutRegion heading={region.aboutTitle} paragraphs={region.aboutParagraphs} image={region.heroImage} ctaHref={featuredTrip ? `/trip/${featuredTrip}` : "/trip"} />
+          <RegionStats />
+          <OurDestinations eyebrow="DESTINATIONS" title={`Popular Places in ${region.title.replace(" REGION", "")}`} items={region.popularPlaces.map((place) => ({ id: place.id, name: place.name, description: place.description, image: place.image, href: place.href }))} className="!py-8 sm:!py-10 lg:!py-12" />
+          <AdventuresSection eyebrow={`POPULAR TREKS IN ${region.title}`} title="Featured Tours" titleFont="playfair" headerLayout="split" viewAllHref="/trip" rightLinkVariant="button" rightLinkText="View all Tours" className="!py-8 sm:!py-10 lg:!py-12" />
+          <RegionAtAGlance />
+          <UnforgettableExperiences experiences={region.experiences} image={region.heroImage} />
+          <NewsletterSubscription />
+        </>}
       </main>
-
-      {/* 10. Shared Footer */}
       <Footer />
     </div>
   );

@@ -19,50 +19,7 @@ export interface Destination {
   href?: string;
 }
 
-const destinationData: Destination[] = [
-  {
-    id: "1",
-    name: "Nepal",
-    description: "Explore the Himalayas",
-    toursCount: "120+ Tours",
-    image: "/images/destinations/everest.jpg",
-    href: "/destination?country=nepal",
-  },
-  {
-    id: "2",
-    name: "Bhutan",
-    description: "Discover the Land of Happiness",
-    toursCount: "28+ Tours",
-    image: "/images/destinations/pokhara.jpg",
-    href: "/destination?country=bhutan",
-  },
-  {
-    id: "3",
-    name: "Tibet",
-    description: "Journey to the Roof of the World",
-    toursCount: "15+ Tours",
-    image: "/images/destinations/mount-kailash.jpg",
-    href: "/destination?country=tibet",
-  },
-  {
-    id: "4",
-    name: "India",
-    description: "Experience timeless traditions",
-    toursCount: "22+ Tours",
-    image: "/images/destinations/lumbini.jpg",
-    href: "/destination?country=india",
-  },
-  {
-    id: "5",
-    name: "Everest Region",
-    description: "Heart of the Khumbu Himalayas",
-    toursCount: "18+ Tours",
-    image: "/images/destinations/kathmandu.jpg",
-    href: "/region/everest",
-  },
-];
-
-export default function PopularDestinations() {
+export default function PopularDestinations({ destinations, loadError }: { destinations: Destination[]; loadError?: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScrollLeft = () => {
@@ -144,7 +101,7 @@ export default function PopularDestinations() {
             className="flex gap-5 xl:gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-1"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {destinationData.map((item) => (
+            {loadError ? <p className="py-8 text-sm text-gray-600" role="alert">{loadError}</p> : destinations.length === 0 ? <p className="py-8 text-sm text-gray-600">No destinations are available right now.</p> : destinations.map((item) => (
               <Link
                 key={item.id}
                 href={item.href || "/destination"}

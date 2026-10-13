@@ -1,5 +1,4 @@
 import { ReviewItem } from "@/data/types";
-import { initialReviewsData } from "@/data/reviews";
 
 const REVIEWS_KEY = "mission-nepal-reviews";
 const NEWSLETTER_KEY = "mission-nepal-newsletter";
@@ -13,24 +12,24 @@ function isClient(): boolean {
 }
 
 /**
- * Retrieve all reviews (merging initial local mock reviews with user-submitted reviews from localStorage)
+ * Retrieve approved API reviews and user-submitted reviews from localStorage
  */
-export function getStoredReviews(): ReviewItem[] {
+export function getStoredReviews(approvedReviews: ReviewItem[] = []): ReviewItem[] {
   if (!isClient()) {
-    return initialReviewsData;
+    return approvedReviews;
   }
 
   try {
     const raw = window.localStorage.getItem(REVIEWS_KEY);
     if (!raw) {
-      return initialReviewsData;
+      return approvedReviews;
     }
     const userReviews: ReviewItem[] = JSON.parse(raw);
     // User submitted reviews first, then initial reviews
-    return [...userReviews, ...initialReviewsData];
+    return [...userReviews, ...approvedReviews];
   } catch (err) {
     console.warn("Error reading reviews from localStorage", err);
-    return initialReviewsData;
+    return approvedReviews;
   }
 }
 
@@ -85,7 +84,15 @@ export function saveBookingInquiry(inquiry: {
 
   try {
     const raw = window.localStorage.getItem(BOOKINGS_KEY);
-    const existing: any[] = raw ? JSON.parse(raw) : [];
+    const existing: Array<{
+      tripSlug: string;
+      name?: string;
+      email?: string;
+      phone?: string;
+      travelDate?: string;
+      travelers?: number;
+      date: string;
+    }> = raw ? JSON.parse(raw) : [];
     existing.unshift({ ...inquiry, date: new Date().toISOString() });
     window.localStorage.setItem(BOOKINGS_KEY, JSON.stringify(existing));
     return true;

@@ -51,9 +51,9 @@ export default function ConceptSection() {
           {/* Center: Dual Paragraphs + Rectangular Orange About Us Button (order-1 on mobile, order-2 on desktop) */}
           <div className="w-full lg:w-[42%] xl:w-[43%] flex flex-col justify-end space-y-3 sm:space-y-3.5 order-1 lg:order-2">
             <p className="text-gray-600 text-xs sm:text-[13.5px] leading-relaxed font-normal">
-              Discover extraordinary journeys across Nepal, Bhutan, Tibet and India,
-              where stunning landscapes, vibrant cultures and authentic experiences
-              come together.
+              Discover extraordinary journeys across Nepal, Bhutan, Tibet and
+              India, where stunning landscapes, vibrant cultures and authentic
+              experiences come together.
             </p>
             <p className="text-gray-600 text-xs sm:text-[13.5px] leading-relaxed font-normal">
               Explore the Himalayas and beyond through unforgettable journeys

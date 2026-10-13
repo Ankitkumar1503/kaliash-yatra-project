@@ -26,12 +26,12 @@ export interface Adventure {
   id: string;
   slug: string;
   image: string;
-  badge: string;
+  badge?: string;
   title: string;
   subtitle: string;
   rating: number;
-  reviewText: string;
-  reviewCount: string;
+  reviewText?: string;
+  reviewCount: string | number;
   price: string;
 }
 
@@ -108,6 +108,8 @@ export interface AdventuresSectionProps {
   rightLinkText?: string;
   showCircularArrow?: boolean;
   className?: string;
+  adventures?: Adventure[];
+  loadError?: string;
 }
 
 export default function AdventuresSection({
@@ -120,6 +122,8 @@ export default function AdventuresSection({
   rightLinkText = "View all Tour",
   showCircularArrow = false,
   className = "",
+  adventures,
+  loadError,
 }: AdventuresSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});
@@ -166,7 +170,9 @@ export default function AdventuresSection({
               </span>
               <h2
                 className={`${
-                  titleFont === "playfair" ? playfair.className : anton.className
+                  titleFont === "playfair"
+                    ? playfair.className
+                    : anton.className
                 } text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black leading-tight`}
               >
                 {title}
@@ -174,8 +180,8 @@ export default function AdventuresSection({
             </div>
 
             {/* Right Side: Arrow Navigation or Button */}
-            {viewAllHref && (
-              rightLinkVariant === "button" ? (
+            {viewAllHref &&
+              (rightLinkVariant === "button" ? (
                 <Link
                   href={viewAllHref}
                   className="border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-black text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 rounded-md transition-colors flex items-center space-x-1.5 shadow-2xs group cursor-pointer"
@@ -205,8 +211,7 @@ export default function AdventuresSection({
                     />
                   </svg>
                 </Link>
-              )
-            )}
+              ))}
           </div>
         )}
 
@@ -227,103 +232,116 @@ export default function AdventuresSection({
             className="flex gap-4 xl:gap-5 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {adventureData.map((item, idx) => (
-              <Link
-                key={`${item.id}-${idx}`}
-                href={`/trip/${item.slug}`}
-                className="flex-shrink-0 w-[270px] sm:w-[290px] md:w-[calc(33.333%-14px)] lg:w-[calc(20%-16px)] snap-start group/card cursor-pointer block"
-              >
-                {/* Card Image Container (Height ≈ 328px, Ratio ≈ 0.95, clean square corners) */}
-                <div className="relative overflow-hidden w-full h-[260px] sm:h-[180px] lg:h-[300px] shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100 rounded-none">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 1024px) 300px, 320px"
-                    className="object-cover object-center group-hover/card:scale-105 transition-transform duration-500"
-                  />
+            {loadError ? (
+              <p className="py-8 text-sm text-gray-600" role="alert">
+                {loadError}
+              </p>
+            ) : (adventures ?? adventureData).length === 0 ? (
+              <p className="py-8 text-sm text-gray-600">
+                No trips are available right now.
+              </p>
+            ) : (
+              (adventures ?? adventureData).map((item, idx) => (
+                <Link
+                  key={`${item.id}-${idx}`}
+                  href={`/trip/${item.slug}`}
+                  className="flex-shrink-0 w-[270px] sm:w-[290px] md:w-[calc(33.333%-14px)] lg:w-[calc(20%-16px)] snap-start group/card cursor-pointer block"
+                >
+                  {/* Card Image Container (Height ≈ 328px, Ratio ≈ 0.95, clean square corners) */}
+                  <div className="relative overflow-hidden w-full h-[260px] sm:h-[180px] lg:h-[300px] shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100 rounded-none">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 1024px) 300px, 320px"
+                      className="object-cover object-center group-hover/card:scale-105 transition-transform duration-500"
+                    />
 
-                  {/* Top-Left Badge: BESTSELLER */}
-                  <span className="bg-[#FBBF24] text-black text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 uppercase tracking-wider absolute top-3 left-3 z-10 shadow-2xs rounded-none">
-                    {item.badge}
-                  </span>
-
-                  {/* Top-Right Circular Favorite Button */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleFavorite(`${item.id}-${idx}`, e);
-                    }}
-                    aria-label="Add to wishlist"
-                    className="bg-white rounded-full w-7 h-7 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
-                  >
-                    {favorites[`${item.id}-${idx}`] ? (
-                      <FaHeart className="w-3.5 h-3.5 text-red-500" />
-                    ) : (
-                      <FaRegHeart className="w-3.5 h-3.5 text-gray-700 hover:text-red-500 transition-colors" />
+                    {/* Top-Left Badge: BESTSELLER */}
+                    {item.badge && (
+                      <span className="bg-[#FBBF24] text-black text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 uppercase tracking-wider absolute top-3 left-3 z-10 shadow-2xs rounded-none">
+                        {item.badge}
+                      </span>
                     )}
-                  </button>
-                </div>
 
-                {/* Content Below Image: Compact & Clean */}
-                <div className="pt-2.5 flex flex-col space-y-0.5">
-                  {/* Title */}
-                  <h3 className="font-semibold text-black text-xs sm:text-[13.5px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
-                    {item.title}
-                  </h3>
-
-                  {/* Secondary Info: Duration · Location */}
-                  <p className="text-gray-500 text-[11px] sm:text-xs font-normal line-clamp-1">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Rating Row */}
-                  <div className="flex items-center gap-1.5 pt-1 flex-wrap">
-                    {/* Orange Rating Box */}
-                    <span className="bg-[#F26522] text-white font-semibold w-6 h-6 sm:w-6.5 sm:h-6.5 flex items-center justify-center text-[11px] rounded-none shrink-0">
-                      {item.rating.toFixed(1)}
-                    </span>
-                    {/* Stars */}
-                    <div className="flex items-center text-[#FBBF24] text-[10px] space-x-0.5 shrink-0">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} />
-                      ))}
-                    </div>
-                    {/* Review Text */}
-                    <span className="text-gray-500 text-[11px] sm:text-xs font-normal">
-                      {item.reviewText} {item.reviewCount} reviews
-                    </span>
+                    {/* Top-Right Circular Favorite Button */}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleFavorite(`${item.id}-${idx}`, e);
+                      }}
+                      aria-label="Add to wishlist"
+                      className="bg-white rounded-full w-7 h-7 flex items-center justify-center absolute top-3 right-3 z-10 shadow-xs hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
+                    >
+                      {favorites[`${item.id}-${idx}`] ? (
+                        <FaHeart className="w-3.5 h-3.5 text-red-500" />
+                      ) : (
+                        <FaRegHeart className="w-3.5 h-3.5 text-gray-700 hover:text-red-500 transition-colors" />
+                      )}
+                    </button>
                   </div>
 
-                  {/* Price Line + Circular Arrow Button */}
-                  <div className="pt-0.5 flex items-center justify-between">
-                    <div className="text-xs text-gray-800 flex items-center">
-                      <span>Starting from</span>
-                      <span className="text-[#F26522] font-semibold text-xs sm:text-sm ml-1">
-                        {item.price}
+                  {/* Content Below Image: Compact & Clean */}
+                  <div className="pt-2.5 flex flex-col space-y-0.5">
+                    {/* Title */}
+                    <h3 className="font-semibold text-black text-xs sm:text-[13.5px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+
+                    {/* Secondary Info: Duration · Location */}
+                    <p className="text-gray-500 text-[11px] sm:text-xs font-normal line-clamp-1">
+                      {item.subtitle}
+                    </p>
+
+                    {/* Rating Row */}
+                    <div className="flex items-center gap-1.5 pt-1 flex-wrap">
+                      {/* Orange Rating Box */}
+                      <span className="bg-[#F26522] text-white font-semibold w-6 h-6 sm:w-6.5 sm:h-6.5 flex items-center justify-center text-[11px] rounded-none shrink-0">
+                        {item.rating.toFixed(1)}
+                      </span>
+                      {/* Stars */}
+                      <div className="flex items-center text-[#FBBF24] text-[10px] space-x-0.5 shrink-0">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} />
+                        ))}
+                      </div>
+                      {/* Review Text */}
+                      <span className="text-gray-500 text-[11px] sm:text-xs font-normal">
+                        {item.reviewText ? `${item.reviewText} ` : ""}
+                        {item.reviewCount} reviews
                       </span>
                     </div>
-                    {showCircularArrow && (
-                      <div className="w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-[#F26522] group-hover/card:bg-[#d85417] text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs">
-                        <svg
-                          className="w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2.5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                          />
-                        </svg>
+
+                    {/* Price Line + Circular Arrow Button */}
+                    <div className="pt-0.5 flex items-center justify-between">
+                      <div className="text-xs text-gray-800 flex items-center">
+                        <span>Starting from</span>
+                        <span className="text-[#F26522] font-semibold text-xs sm:text-sm ml-1">
+                          {item.price}
+                        </span>
                       </div>
-                    )}
+                      {showCircularArrow && (
+                        <div className="w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-[#F26522] group-hover/card:bg-[#d85417] text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs">
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2.5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))
+            )}
           </div>
 
           {/* Subtle Right Scroll Button */}

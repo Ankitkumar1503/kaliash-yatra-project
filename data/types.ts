@@ -67,6 +67,8 @@ export interface ItineraryDay {
   dayNumber: number;
   title: string;
   description: string;
+  image?: string;
+  image2?: string;
   details?: {
     altitude?: string;
     trekkingTime?: string;

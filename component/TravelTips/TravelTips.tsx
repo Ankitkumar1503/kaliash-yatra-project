@@ -63,6 +63,7 @@ export interface TravelTipsProps {
   posts?: BlogPost[];
   className?: string;
   showSearchFilter?: boolean;
+  loadError?: string;
 }
 
 export default function TravelTips({
@@ -71,11 +72,12 @@ export default function TravelTips({
   posts,
   className = "",
   showSearchFilter = false,
+  loadError,
 }: TravelTipsProps = {}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const basePosts = posts && posts.length > 0 ? posts : blogData;
+  const basePosts = posts !== undefined ? posts : blogData;
 
   const filteredPosts = useMemo(() => {
     let list = basePosts;
@@ -163,7 +165,9 @@ export default function TravelTips({
           </div>
         )}
 
-        {filteredPosts.length === 0 ? (
+        {loadError ? (
+          <div className="text-center py-12 text-gray-500 text-sm" role="alert">{loadError}</div>
+        ) : filteredPosts.length === 0 ? (
           <div className="text-center py-12 text-gray-500 text-sm">
             No travel articles found matching &quot;{searchQuery}&quot;.
           </div>

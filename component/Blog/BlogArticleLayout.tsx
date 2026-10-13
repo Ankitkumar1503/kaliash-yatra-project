@@ -1,13 +1,17 @@
 import React from "react";
 import BlogContent from "./BlogContent";
 import BlogSidebar from "./BlogSidebar";
-import { BlogDetailArticle } from "./blogDetailData";
+import type { BlogDetailArticle, PopularArticle } from "./blogDetailData";
 
 interface BlogArticleLayoutProps {
   article: BlogDetailArticle;
+  popular: PopularArticle[];
 }
 
-export default function BlogArticleLayout({ article }: BlogArticleLayoutProps) {
+export default function BlogArticleLayout({
+  article,
+  popular,
+}: BlogArticleLayoutProps) {
   return (
     <section className="w-full bg-white py-10 sm:py-12 md:py-16">
       <div className="site-container">
@@ -19,7 +23,7 @@ export default function BlogArticleLayout({ article }: BlogArticleLayoutProps) {
 
           {/* Sidebar (~30%) */}
           <div className="lg:col-span-4 xl:col-span-4 pt-4 lg:pt-0">
-            <BlogSidebar />
+            <BlogSidebar articles={popular} />
           </div>
         </div>
       </div>

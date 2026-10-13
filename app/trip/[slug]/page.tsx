@@ -1,149 +1,222 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Header from "@/component/Header/Header";
 import PageBanner from "@/component/PageBanner/PageBanner";
 import TripHeroBooking from "@/component/Trip/TripHeroBooking";
 import TripNavTabs from "@/component/Trip/TripNavTabs";
 import TripAboutAndHighlights from "@/component/Trip/TripAboutAndHighlights";
 import TripItinerary from "@/component/Trip/TripItinerary";
+import TripElevationProfile from "@/component/Trip/TripElevationProfile";
+import TripRouteMap from "@/component/Trip/TripRouteMap";
+import TripDepartures from "@/component/Trip/TripDepartures";
+import TripVideoSection from "@/component/Trip/TripVideoSection";
 import TripInclusionsExclusions from "@/component/Trip/TripInclusionsExclusions";
-import Testimonials, { Testimonial } from "@/component/Testimonials/Testimonials";
+import Testimonials, {
+  type Testimonial,
+} from "@/component/Testimonials/Testimonials";
 import AdventuresSection from "@/component/AdventuresSection/AdventuresSection";
+import FAQSection from "@/component/FAQSection/FAQSection";
 import TravelGallery from "@/component/TravelGallery/TravelGallery";
 import NewsletterSubscription from "@/component/NewsletterSubscription/NewsletterSubscription";
 import Footer from "@/component/Footer/Footer";
-import { tripsData } from "@/data/trips";
+import { ApiRequestError } from "@/lib/api/client";
+import { getTrip } from "@/lib/api/trips";
 
-type Props = {
-  params: Promise<{ slug: string }> | { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams?.slug || "";
-  const trip = tripsData[slug] || tripsData["everest-base-camp-trek"];
-
-  return {
-    title: `${trip.title} - Mission Nepal Holiday`,
-    description: trip.overview[0] || "Explore the Himalayas with Mission Nepal Holiday.",
-  };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const trip = await getTrip(slug);
+    console.log("trip:", trip);
+    if (!trip) notFound();
+    return {
+      title: `${trip.title} - Mission Nepal Holiday`,
+      description:
+        trip.overview[0] || "Explore the Himalayas with Mission Nepal Holiday.",
+    };
+  } catch (error) {
+    if (error instanceof Error && "status" in error && error.status === 404)
+      notFound();
+    return {
+      title: `${slug} - Mission Nepal Holiday`,
+      description: "Explore journeys with Mission Nepal Holiday.",
+    };
+  }
 }
 
-const tripTestimonials: Testimonial[] = [
-  {
-    id: "1",
-    avatar: "/images/testimonials/avatar-1.jpg",
-    name: "Sunil Mittal",
-    location: "Trekker from India",
-    quote:
-      "The trek was flawlessly organized by Mission Nepal Holidays. Our guide was incredibly knowledgeable, attentive, and made our journey seamless and deeply memorable.",
-    rating: 5,
-  },
-  {
-    id: "2",
-    avatar: "/images/testimonials/avatar-2.jpg",
-    name: "David Miller",
-    location: "Trekker from United Kingdom",
-    quote:
-      "A lifelong dream accomplished! The team took outstanding care of acclimatization, lodging, and safety every single day. Truly an unforgettable adventure!",
-    rating: 5,
-  },
-  {
-    id: "3",
-    avatar: "/images/testimonials/avatar-3.jpg",
-    name: "Elena Rostova",
-    location: "Trekker from Germany",
-    quote:
-      "From the mountain flights to golden sunrises over high alpine ridges, everything exceeded my expectations. Outstanding communication and hospitality.",
-    rating: 5,
-  },
-];
-
-export default async function DynamicTripPage({ params }: Props) {
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams?.slug || "";
-  const trip = tripsData[slug] || tripsData["everest-base-camp-trek"];
-
+export default async function DynamicTripPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  let trip;
+  let loadError: unknown;
+  try {
+    trip = await getTrip(slug);
+  } catch (error) {
+    loadError = error;
+  }
+  if (!loadError && !trip) notFound();
+  const testimonials: Testimonial[] = (trip?.reviews ?? []).map((review) => ({
+    ...review,
+  }));
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white">
-      {/* 1. Shared Header */}
       <Header />
-
       <main className="flex-grow w-full">
-        {/* 2. Reusable PageBanner */}
-        <PageBanner
-          backgroundImage={trip.heroImage}
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: trip.country, href: `/destination?country=${trip.country.toLowerCase()}` },
-            { label: trip.title },
-          ]}
-          title={trip.title.toUpperCase()}
-          description={trip.overview[0]}
-        />
+        {loadError || !trip ? (
+          <section
+            className="site-container py-16 text-center text-gray-600"
+            role="alert"
+          >
+            {loadError instanceof ApiRequestError
+              ? loadError.message
+              : "Unable to load trip content right now."}
+          </section>
+        ) : (
+          <>
+            <PageBanner
+              backgroundImage={
+                trip.heroImage || "/images/destinations/everest.jpg"
+              }
+              breadcrumbs={[
+                { label: "Home", href: "/" },
+                {
+                  label: trip.country,
+                  href: `/destination?country=${trip.country.toLowerCase()}`,
+                },
+                { label: trip.title },
+              ]}
+              title={trip.title.toUpperCase()}
+              description={trip.overview[0] ?? trip.title}
+            />
+            <TripHeroBooking
+              imageAlt={trip.title}
+              image={trip.heroImage || "/images/destinations/everest.jpg"}
+              gallery={trip.gallery}
+              price={trip.price.replace("$", "")}
+              originalPrice={
+                trip.originalPrice
+                  ? trip.originalPrice.replace("$", "")
+                  : undefined
+              }
+              groupPricing={trip.groupPricing}
+              currency={trip.currencyCode}
+              priceSuffix="Per Person"
+              duration={trip.duration}
+              difficulty={`${trip.difficulty} Difficulty`}
+              region={trip.region}
+              maxAltitude={trip.maxAltitude}
+              checkAvailabilityHref="#itinerary"
+              downloadItineraryHref="#inclusions"
+              planTripHref="/reviews"
+            />
+            <TripNavTabs />
+            <TripAboutAndHighlights
+              paragraphs={trip.overview}
+              highlights={trip.highlights}
+            />
+            <TripItinerary
+              days={trip.itinerary}
+              image={trip.heroImage || trip.gallery?.[0] || undefined}
+            />
+            <TripElevationProfile
+              title={`${trip.title} Elevation Profile`}
+              imageUrl={trip.elevationProfileUrl}
+              itineraryDays={trip.itinerary}
+            />
+            <TripRouteMap
+              title="Route Map"
+              mapImageUrl={trip.routeMapUrl}
+              itineraryDays={trip.itinerary}
+            />
+            <TripInclusionsExclusions
+              inclusions={trip.inclusions}
+              exclusions={trip.exclusions}
+            />
+            {/* <TripDepartures
+              departures={trip.departures}
+              currency={trip.currencyCode}
+              tripPrice={trip.price.replace("$", "")}
+            /> */}
 
-        {/* 3. Trip Hero / Booking Summary (60/40 Split) */}
-        <TripHeroBooking
-          image={trip.heroImage}
-          price={trip.price.replace("$", "")}
-          currency="USD"
-          priceSuffix="Per Person"
-          duration={trip.duration}
-          difficulty={`${trip.difficulty} Difficulty`}
-          region={trip.region}
-          maxAltitude={trip.maxAltitude}
-          checkAvailabilityHref="#itinerary"
-          downloadItineraryHref="#inclusions"
-          planTripHref="/reviews"
-        />
-
-        {/* 4. Trip Navigation Tabs */}
-        <TripNavTabs />
-
-        {/* 5, 6, 7. About the Trip, Experience Highlights & Trip Highlights */}
-        <TripAboutAndHighlights
-          paragraphs={trip.overview}
-          highlights={trip.highlights}
-        />
-
-        {/* 8. Day-by-Day Itinerary Accordion & Timeline */}
-        <TripItinerary days={trip.itinerary} />
-
-        {/* 9. Inclusions & Exclusions */}
-        <TripInclusionsExclusions
-          inclusions={trip.inclusions}
-          exclusions={trip.exclusions}
-        />
-
-        {/* 10. Traveler Testimonials */}
-        <div id="reviews">
-          <Testimonials
-            eyebrow="TRAVELERS LOVE US"
-            title="WHAT OUR TRAVELERS SAY"
-            testimonials={tripTestimonials}
-            className="!py-8 sm:!py-10 lg:!py-12"
-          />
-        </div>
-
-        {/* 11. Related / Featured Tours */}
-        <AdventuresSection
-          eyebrow={`POPULAR IN ${trip.region.toUpperCase()}`}
-          title="Featured Tours"
-          titleFont="playfair"
-          headerLayout="split"
-          viewAllHref="/destination"
-          rightLinkVariant="button"
-          rightLinkText="View all Tour"
-          className="!py-8 sm:!py-10 lg:!py-12"
-        />
-
-        {/* 12. Travel Gallery */}
-        <TravelGallery />
-
-        {/* 13. Newsletter Subscription */}
-        <NewsletterSubscription />
+            <TripVideoSection
+              title={`Experience ${trip.title}`}
+              videoUrl={trip.videoUrl}
+              thumbnailUrl={
+                trip.heroImage ||
+                trip.gallery?.[0] ||
+                "/images/destinations/everest.jpg"
+              }
+            />
+            <div id="reviews">
+              <Testimonials
+                eyebrow="TRAVELERS LOVE US"
+                title="WHAT OUR TRAVELERS SAY"
+                testimonials={testimonials}
+                tripId={trip.numericId}
+                tripTitle={trip.title}
+                className="!py-8 sm:!py-10 lg:!py-12"
+              />
+            </div>
+            <AdventuresSection
+              eyebrow={`POPULAR IN ${trip.region.toUpperCase()}`}
+              title="Featured Tours"
+              titleFont="playfair"
+              headerLayout="split"
+              viewAllHref="/destination"
+              rightLinkVariant="button"
+              rightLinkText="View all Tour"
+              className="!py-8 sm:!py-10 lg:!py-12"
+            />
+            <TravelGallery
+              items={
+                trip.gallery && trip.gallery.length > 0
+                  ? [
+                      ...(trip.heroImage ? [trip.heroImage] : []),
+                      ...trip.gallery,
+                    ]
+                      .filter((val, idx, self) => self.indexOf(val) === idx)
+                      .map((imgUrl, idx) => ({
+                        id: String(idx + 1),
+                        image: imgUrl,
+                        alt: `${trip.title} photo ${idx + 1}`,
+                        heightClass: [
+                          "md:h-[260px]",
+                          "md:h-[190px]",
+                          "md:h-[300px]",
+                          "md:h-[190px]",
+                          "md:h-[260px]",
+                        ][idx % 5],
+                      }))
+                  : undefined
+              }
+            />
+            <div id="faqs">
+              <FAQSection
+                id="faqs"
+                eyebrow="TRIP INFORMATION"
+                title="FREQUENTLY ASKED QUESTIONS"
+                description={`Find essential answers and practical tips for ${trip.title}.`}
+                items={
+                  trip.faqs && trip.faqs.length > 0
+                    ? trip.faqs.map((f, i) => ({
+                        id: String(i + 1),
+                        question: f.question,
+                        answer: f.answer,
+                      }))
+                    : undefined
+                }
+              />
+            </div>
+            <NewsletterSubscription />
+          </>
+        )}
       </main>
-
-      {/* 14. Shared Footer */}
       <Footer />
     </div>
   );

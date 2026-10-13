@@ -14,6 +14,7 @@ export interface ItineraryDay {
   dayNumber: number;
   title: string;
   description: string;
+  image?: string;
   details?: {
     altitude?: string;
     trekkingTime?: string;
@@ -143,6 +144,7 @@ export default function TripItinerary({
             </p>
             <div className="relative w-full h-[180px] sm:h-[210px] lg:h-[230px] overflow-hidden rounded-none shadow-2xs group">
               <Image
+                unoptimized
                 src={image}
                 alt={heading}
                 fill
@@ -193,6 +195,34 @@ export default function TripItinerary({
                       {/* Expandable Content */}
                       {isOpen && (
                         <div className="px-3.5 sm:px-4 pb-3.5 pt-1 text-gray-600 text-xs sm:text-[13px] leading-relaxed border-t border-gray-100/80">
+                          {(item.image || item.image2) && (
+                            <div className={`grid ${item.image && item.image2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"} gap-3 my-3`}>
+                              {item.image && (
+                                <div className="relative w-full h-44 sm:h-56 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 shadow-2xs">
+                                  <img
+                                    src={item.image}
+                                    alt={`${item.title} - Photo 1`}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      e.currentTarget.style.display = "none";
+                                    }}
+                                  />
+                                </div>
+                              )}
+                              {item.image2 && (
+                                <div className="relative w-full h-44 sm:h-56 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 shadow-2xs">
+                                  <img
+                                    src={item.image2}
+                                    alt={`${item.title} - Photo 2`}
+                                    className="w-full h-full object-cover"
+                                    onError={(e) => {
+                                      e.currentTarget.style.display = "none";
+                                    }}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
                           <p className="mb-2">{item.description}</p>
                           {item.details && (
                             <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] sm:text-xs text-gray-500 pt-1 font-medium">

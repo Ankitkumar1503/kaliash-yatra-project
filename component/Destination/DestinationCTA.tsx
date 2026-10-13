@@ -71,7 +71,8 @@ export default function DestinationCTA() {
                 STAY IN THE KNOW
               </h3>
               <p className="text-white/90 text-xs sm:text-sm font-normal">
-                Get special offers and travel inspiration sent directly to your inbox.
+                Get special offers and travel inspiration sent directly to your
+                inbox.
               </p>
             </div>
           </div>

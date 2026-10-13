@@ -61,7 +61,10 @@ export default function BlogContent({ article }: BlogContentProps) {
       {/* 5. Article Sections */}
       <div className="flex flex-col space-y-8 sm:space-y-9 pt-2">
         {article.sections.map((section) => (
-          <section key={section.id} className="flex flex-col space-y-3.5 sm:space-y-4">
+          <section
+            key={section.id}
+            className="flex flex-col space-y-3.5 sm:space-y-4"
+          >
             {/* Section Title */}
             <h2
               className={`${playfair.className} text-xl sm:text-2xl md:text-[26px] font-bold text-gray-900 tracking-tight`}

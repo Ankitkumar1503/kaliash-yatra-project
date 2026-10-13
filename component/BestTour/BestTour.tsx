@@ -22,81 +22,27 @@ export interface Tour {
   id: string;
   slug: string;
   image: string;
-  badge: string;
+  badge?: string;
   title: string;
   location: string;
   rating: number;
-  reviewText: string;
-  reviewCount: string;
+  reviewCount: number;
   price: string;
 }
 
-const tourData: Tour[] = [
-  {
-    id: "1",
-    slug: "everest-base-camp-trek",
-    image: "/images/tours/tour-3.jpg",
-    badge: "BESTSELLER",
-    title: "Everest Base Camp Legendary Trek",
-    location: "Khumbu Region, Nepal",
-    rating: 5.0,
-    reviewText: "Exceptional",
-    reviewCount: "3,014",
-    price: "$1,450.00",
-  },
-  {
-    id: "2",
-    slug: "mount-kailash-mansarovar-yatra",
-    image: "/images/destinations/mount-kailash.jpg",
-    badge: "SACRED",
-    title: "Mount Kailash & Mansarovar Yatra",
-    location: "Ngari Prefecture, Tibet",
-    rating: 4.9,
-    reviewText: "Exceptional",
-    reviewCount: "2,450",
-    price: "$2,850.00",
-  },
-  {
-    id: "3",
-    slug: "annapurna-circuit-trek",
-    image: "/images/destinations/annapurna.jpg",
-    badge: "CLASSIC",
-    title: "Annapurna Circuit & Thorong La Pass",
-    location: "Annapurna Sanctuary, Nepal",
-    rating: 4.9,
-    reviewText: "Exceptional",
-    reviewCount: "1,890",
-    price: "$1,250.00",
-  },
-  {
-    id: "4",
-    slug: "bhutan-cultural-odyssey",
-    image: "/images/gallery/gallery-2.jpg",
-    badge: "EXCLUSIVE",
-    title: "Bhutan Cultural Odyssey & Tiger's Nest",
-    location: "Paro & Thimphu, Bhutan",
-    rating: 4.8,
-    reviewText: "Exceptional",
-    reviewCount: "1,120",
-    price: "$1,980.00",
-  },
-  {
-    id: "5",
-    slug: "everest-base-camp-trek",
-    image: "/images/tours/tour-5.jpg",
-    badge: "SCENIC",
-    title: "Gokyo Lakes & Everest Base Camp",
-    location: "Sagarmatha, Nepal",
-    rating: 5.0,
-    reviewText: "Exceptional",
-    reviewCount: "1,560",
-    price: "$1,650.00",
-  },
-];
-
-export default function BestTour() {
+export default function BestTour({
+  tours,
+  loadError,
+  title = "Top Best Seller Tour",
+}: {
+  tours: Tour[];
+  loadError?: string;
+  title?: string;
+}) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});
+
+  console.log("tours", tours);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -128,7 +74,7 @@ export default function BestTour() {
             <h2
               className={`${playfair.className} text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-semibold text-black leading-tight`}
             >
-              Top Best Seller Tour
+              {title}
             </h2>
           </div>
 
@@ -161,86 +107,98 @@ export default function BestTour() {
             className="flex gap-5 xl:gap-6 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory py-2"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {tourData.map((tour) => (
-              <Link
-                key={tour.id}
-                href={`/trip/${tour.slug}`}
-                className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[290px] lg:w-[calc(20%-19.2px)] snap-start group/card cursor-pointer block"
-              >
-                {/* Card Image Container */}
-                <div className="relative overflow-hidden aspect-square w-full shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100">
-                  <Image
-                    src={tour.image}
-                    alt={tour.title}
-                    fill
-                    sizes="(max-width: 768px) 280px, 290px"
-                    className="object-cover group-hover/card:scale-105 transition-transform duration-500"
-                  />
+            {loadError ? (
+              <p className="py-8 text-sm text-gray-600" role="alert">
+                {loadError}
+              </p>
+            ) : tours.length === 0 ? (
+              <p className="py-8 text-sm text-gray-600">
+                No trips are available right now.
+              </p>
+            ) : (
+              tours.map((tour) => (
+                <Link
+                  key={tour.id}
+                  href={`/trip/${tour.slug}`}
+                  className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[290px] lg:w-[calc(20%-19.2px)] snap-start group/card cursor-pointer block"
+                >
+                  {/* Card Image Container */}
+                  <div className="relative overflow-hidden aspect-square w-full shadow-2xs group-hover/card:shadow-md transition-shadow bg-gray-100">
+                    <Image
+                      src={tour.image}
+                      alt={tour.title}
+                      fill
+                      sizes="(max-width: 768px) 280px, 290px"
+                      className="object-cover group-hover/card:scale-105 transition-transform duration-500"
+                    />
 
-                  {/* Top-Left Badge */}
-                  <span className="bg-[#FFC107] text-black text-[11px] font-semibold px-2.5 py-1 absolute top-3 left-0 z-10 shadow-2xs tracking-wider uppercase">
-                    {tour.badge}
-                  </span>
-
-                  {/* Top-Right Wishlist Heart Button */}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleFavorite(tour.id, e);
-                    }}
-                    aria-label="Add to wishlist"
-                    className="bg-white rounded-full p-2 absolute top-3 right-3 z-10 shadow-md hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
-                  >
-                    {favorites[tour.id] ? (
-                      <FaHeart className="w-3.5 h-3.5 text-red-500" />
-                    ) : (
-                      <FaRegHeart className="w-3.5 h-3.5 text-gray-700 hover:text-red-500 transition-colors" />
+                    {/* Top-Left Badge */}
+                    {tour.badge && (
+                      <span className="bg-[#FFC107] text-black text-[11px] font-semibold px-2.5 py-1 absolute top-3 left-0 z-10 shadow-2xs tracking-wider uppercase">
+                        {tour.badge}
+                      </span>
                     )}
-                  </button>
-                </div>
 
-                {/* Card Content Below Image */}
-                <div className="pt-3 flex flex-col space-y-0.5">
-                  {/* Title */}
-                  <h3 className="font-semibold text-black text-xs sm:text-[14px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
-                    {tour.title}
-                  </h3>
+                    {/* Top-Right Wishlist Heart Button */}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleFavorite(tour.id, e);
+                      }}
+                      aria-label="Add to wishlist"
+                      className="bg-white rounded-full p-2 absolute top-3 right-3 z-10 shadow-md hover:bg-gray-50 transition-colors text-gray-700 focus:outline-none cursor-pointer"
+                    >
+                      {favorites[tour.id] ? (
+                        <FaHeart className="w-3.5 h-3.5 text-red-500" />
+                      ) : (
+                        <FaRegHeart className="w-3.5 h-3.5 text-gray-700 hover:text-red-500 transition-colors" />
+                      )}
+                    </button>
+                  </div>
 
-                  {/* Location Subtext */}
-                  <p className="text-gray-500 text-[11px] sm:text-xs font-normal">
-                    {tour.location}
-                  </p>
+                  {/* Card Content Below Image */}
+                  <div className="pt-3 flex flex-col space-y-0.5">
+                    {/* Title */}
+                    <h3 className="font-semibold text-black text-xs sm:text-[14px] line-clamp-1 group-hover/card:text-[#F26522] transition-colors leading-snug">
+                      {tour.title}
+                    </h3>
 
-                  {/* Rating Row */}
-                  <div className="flex items-center gap-1.5 pt-1 flex-wrap">
-                    {/* Rating Badge */}
-                    <span className="bg-[#F26522] text-white font-semibold px-1.5 py-0.5 text-[11px] rounded-xs">
-                      {tour.rating.toFixed(1)}
-                    </span>
+                    {/* Location Subtext */}
+                    <p className="text-gray-500 text-[11px] sm:text-xs font-normal">
+                      {tour.location}
+                    </p>
 
-                    {/* 5 Filled Stars */}
-                    <div className="flex items-center text-amber-400 text-[11px] space-x-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} />
-                      ))}
+                    {/* Rating Row */}
+                    <div className="flex items-center gap-1.5 pt-1 flex-wrap">
+                      {/* Rating Badge */}
+                      <span className="bg-[#F26522] text-white font-semibold px-1.5 py-0.5 text-[11px] rounded-xs">
+                        {tour.rating.toFixed(1)}
+                      </span>
+
+                      {/* 5 Filled Stars */}
+                      <div className="flex items-center text-amber-400 text-[11px] space-x-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} />
+                        ))}
+                      </div>
+
+                      {/* Review Text & Count */}
+                      <span className="text-gray-500 text-[11px] sm:text-xs">
+                        {tour.reviewCount} reviews
+                      </span>
                     </div>
 
-                    {/* Review Text & Count */}
-                    <span className="text-gray-500 text-[11px] sm:text-xs">
-                      {tour.reviewText} {tour.reviewCount} reviews
-                    </span>
+                    {/* Price Line */}
+                    <div className="pt-1 text-xs text-gray-700 flex items-center">
+                      <span>Starting from</span>
+                      <span className="text-[#F26522] font-semibold text-xs sm:text-sm ml-1.5">
+                        {tour.price}
+                      </span>
+                    </div>
                   </div>
-
-                  {/* Price Line */}
-                  <div className="pt-1 text-xs text-gray-700 flex items-center">
-                    <span>Starting from</span>
-                    <span className="text-[#F26522] font-semibold text-xs sm:text-sm ml-1.5">
-                      {tour.price}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))
+            )}
           </div>
 
           {/* Right Arrow Button */}

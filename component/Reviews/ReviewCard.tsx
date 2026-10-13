@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import { ReviewItem } from "./reviewsData";
+import type { ReviewItem } from "@/data/types";
 
 interface ReviewCardProps {
   review: ReviewItem;

@@ -25,17 +25,19 @@ export default function DestinationOverview() {
 
           <div className="space-y-4 text-gray-600 text-sm sm:text-base leading-relaxed">
             <p>
-              Nestled at the foot of the world-famous pyramid-shaped Matterhorn peak,
-              Zermatt is Switzerland’s ultimate alpine wonderland. Free of combustion
-              engine vehicles, this charming car-free village boasts crystal-clean mountain
-              air, traditional timber-clad chalets, and cobblestone lanes lined with
-              world-class restaurants and historic boutique shops.
+              Nestled at the foot of the world-famous pyramid-shaped Matterhorn
+              peak, Zermatt is Switzerland’s ultimate alpine wonderland. Free of
+              combustion engine vehicles, this charming car-free village boasts
+              crystal-clean mountain air, traditional timber-clad chalets, and
+              cobblestone lanes lined with world-class restaurants and historic
+              boutique shops.
             </p>
             <p>
-              Whether you are riding Europe’s highest open-air cogwheel railway up to
-              Gornergrat, gazing over 29 peaks exceeding 4,000 meters, or skiing on year-round
-              glacier slopes, Zermatt offers an unmatched fusion of high-altitude adventure,
-              serene alpine lakes, and legendary Swiss alpine luxury.
+              Whether you are riding Europe’s highest open-air cogwheel railway
+              up to Gornergrat, gazing over 29 peaks exceeding 4,000 meters, or
+              skiing on year-round glacier slopes, Zermatt offers an unmatched
+              fusion of high-altitude adventure, serene alpine lakes, and
+              legendary Swiss alpine luxury.
             </p>
           </div>
         </div>

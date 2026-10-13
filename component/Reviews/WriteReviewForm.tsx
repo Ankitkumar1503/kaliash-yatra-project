@@ -1,9 +1,11 @@
 "use client";
 
+import { submitReview } from "@/lib/api/reviews";
+
 import React, { useState } from "react";
 import { Playfair_Display } from "next/font/google";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { ReviewItem } from "./reviewsData";
+import type { ReviewItem } from "@/data/types";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -59,6 +61,14 @@ export default function WriteReviewForm({ onAddReview }: WriteReviewFormProps) {
     if (onAddReview) {
       onAddReview(newReview);
     }
+    submitReview({
+      name,
+      email,
+      location: country,
+      title: title.trim() || null,
+      message,
+      rating,
+    }).catch((err) => console.warn("Failed to submit review to backend:", err));
 
     setSubmitted(true);
     // Reset form fields

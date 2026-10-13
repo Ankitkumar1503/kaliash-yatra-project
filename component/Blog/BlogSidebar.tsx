@@ -5,14 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { FaSearch } from "react-icons/fa";
-import { popularArticles } from "./blogDetailData";
+import type { PopularArticle } from "./blogDetailData";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["600", "700"],
 });
 
-export default function BlogSidebar() {
+export default function BlogSidebar({
+  articles,
+}: {
+  articles: PopularArticle[];
+}) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
@@ -60,7 +64,7 @@ export default function BlogSidebar() {
         </h3>
 
         <div className="flex flex-col divide-y divide-gray-100">
-          {popularArticles.map((article) => (
+          {articles.map((article) => (
             <Link
               key={article.id}
               href={`/blog/${article.slug}`}
