@@ -99,6 +99,18 @@ export interface Trip {
   groupSize: string;
   badge?: string;
   heroImage: string;
+  elevationProfileUrl?: string | null;
+  routeMapUrl?: string | null;
+  videoUrl?: string | null;
+  departures?: Array<{
+    id?: string;
+    startDate: string;
+    endDate: string;
+    totalSeats?: number;
+    bookedSeats?: number;
+    price?: number | string;
+    status?: string;
+  }>;
   gallery: string[];
   overview: string[];
   highlights: string[];

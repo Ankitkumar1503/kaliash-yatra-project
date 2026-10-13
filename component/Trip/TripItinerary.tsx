@@ -15,6 +15,7 @@ export interface ItineraryDay {
   title: string;
   description: string;
   image?: string;
+  image2?: string;
   details?: {
     altitude?: string;
     trekkingTime?: string;

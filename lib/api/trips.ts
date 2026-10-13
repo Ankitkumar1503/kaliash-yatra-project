@@ -53,18 +53,6 @@ export type ApiTrip = {
   activity: string | null;
   category: string | null;
   heroImage: Media;
-  elevationProfileUrl?: string | null;
-  routeMapUrl?: string | null;
-  videoUrl?: string | null;
-  departures?: Array<{
-    id?: string;
-    startDate: string;
-    endDate: string;
-    totalSeats?: number;
-    bookedSeats?: number;
-    price?: number;
-    status?: string;
-  }>;
   gallery?: (Media | { image?: Media })[];
   overview?: string[];
   highlights?: string[];
@@ -89,6 +77,18 @@ export type UiTrip = Trip & {
   currencyCode: string;
   displayArea?: string | null;
   category?: string | null;
+  elevationProfileUrl?: string | null;
+  routeMapUrl?: string | null;
+  videoUrl?: string | null;
+  departures?: Array<{
+    id?: string;
+    startDate: string;
+    endDate: string;
+    totalSeats?: number;
+    bookedSeats?: number;
+    price?: number | string;
+    status?: string;
+  }>;
   reviews: Array<{
     id: string;
     avatar: string;
